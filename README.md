@@ -1,11 +1,13 @@
 # 🪣 Simple Storage Service 
-## Resource Policies & ACLs
+## Security & Policies
 
-S3 is private by default (only accessible by the account root user of the account which created it)
+S3 is private by default (only accessible by the account root user of the account which created it). 
+Policies can be used to allow access to buckets and objects:
 
-Resouce policies (who can access that resource) and identity policies (what that identity can access) can be used:
-  - Identity policies are limited, because identity policies can only be attached to identities in **own** account
-  - Resource policies can ALLOW/DENY same or different account and anonymous principal
+- **Identity policies** (what that identity can access): limited because identity policies can only be attached to identities in **own** account
+- **Resource policies** (who can access that resource): can ALLOW/DENY same or different account and anonymous principal
+- **Access Control List**: limited and deprecated
+- **Block Public Access**: safeguard for public bucket
 
 ```json
 {
@@ -27,7 +29,4 @@ Resouce policies (who can access that resource) and identity policies (what that
 > [!NOTE]
 > If the is a `Principal` it should be a Resource Policy, if not it should be an Identity policy
 
-Other policies:
-- Access Control List (limited and deprecated)
-- Block Public Access (safeguard for public bucket)
 
