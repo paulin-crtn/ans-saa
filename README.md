@@ -75,7 +75,7 @@ Uses the AWS Edge Location network: instead of uploading data to a bucket (via t
 > [!WARNING]
 > Limitation to enable it: the bucket name cannot contains period and it needs to be DNS compatible in its naming
 
-## 👀 S3 Object Encryption
+## 🙈 S3 Object Encryption
 
 - Buckets are not encrypted, objects are
 - Encryption in transit happens when transfering data between Users/App and an S3 Endpoint (independently of CSE or SSE)
@@ -151,6 +151,41 @@ Same as Standard-IA class but objects are only stored in **1 AZ** in the region 
 
 > [!NOTE]
 > Useful for **long lived** data which is **NON-CRITICAL** & **REPLACEABLE** and where access is **infrequent**
+
+### 🧊 Glacier - Instant
+
+Same as Standard-IA class but with more expensive retrieval fee and a minimum duration charge of `90` days.
+
+> [!NOTE]
+> Useful for **long lived** data accessed **once per quarter** with **millisecond** access
+
+### 🧊 Glacier - Flexible
+
+Same as Glacier - Instant class but with a minimum capacity charge of `40KB` per object. Objects cannot be made publicly accessible: any access of data (beyond object metadata) requires a retrieval process. First bytes latency: minutes to hours (faster = more expensive).
+
+- Expedited (1-5 minutes)
+- Standard (3-5 hours)
+- Bulk (5-12 hours)
+
+> [!NOTE]
+> Useful for **archival** data where frequent or realtime access isn't needed
+
+### 🧊 Glacier - Deep Archive
+
+Same as Glacier - Flexible class but with a minimum duration charge of `180` days. First bytes latency: hours to days.
+
+- Standard (12 hours)
+- Bulk (up to 48 hours)
+
+> [!NOTE]
+> Useful for **archival** data that rarely - if ever - needs to be accessed (e.g. legal or regulation data storage)
+
+### 👀 Intelligent-Tiering
+
+Monitors and automatically moves any objects not accessed for 30 days to a low cost infrequent access tier and eventually to archive instant access, archive access or deep archive tiers. Cost per 1,000 objects.
+
+> [!NOTE]
+> Useful for **long-lived** with **changing** or **unknown** patterns
 
 
 # 🔑 Key Management Service
