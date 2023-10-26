@@ -119,11 +119,38 @@ S3 hosting can be useful for:
 
 ## 💶 Pricing
 
-1. **Storage**: see S3 Object Storage Classes
-2. **Data transfer**:
-   - Transfer IN (to S3 from internet) is always free
-   - Transfer OUT (from S3 to internet) is charged 
-3. **Request**: lifecycle transition, data retrieval, POST, PUT, GET, etc. is charged
+The following are charged:
+
+1. **Storage** (prices depends on the selected storage class)
+2. **Data transfer**: 📤 Transfer OUT (from S3 to internet) - *NB: 📥 Transfer IN (to S3 from internet) is always free*
+3. **Request**: lifecycle transition, data retrieval, POST, PUT, GET, etc.
+
+## 🏢 Storage Classes
+
+### 📦 Standard
+
+Objects are replicated across at least 3 AZs in the AWS region (`99.999999999%` durability).
+
+- Millisecond first byte latency
+- Objects can be made publicaly available
+- No specific retrieval fee, no minimum duration, no minimum size
+
+> [!NOTE]
+> Useful for **frequently** accessed data which is **important** and **non replaceable**
+
+### 📦 Standard-IA (Infrequent Access)
+
+Same as Standard class but with retrieval fee and a minimum duration charge of `30` days (objects can be stored for less but the minimum billing always applies) + minimum capacity charge of `128KB` per object.
+
+> [!NOTE]
+> Useful for **long lived** data which is **important** and **non replaceable** but where access is **infrequent**
+
+### 📦 Standard One Zone-IA (Infrequent Access)
+
+Same as Standard-IA class but objects are only stored in **1 AZ** in the region (not as resilient).
+
+> [!NOTE]
+> Useful for **long lived** data which is **NON-CRITICAL** & **REPLACEABLE** and where access is **infrequent**
 
 
 # 🔑 Key Management Service
