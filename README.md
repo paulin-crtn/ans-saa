@@ -63,8 +63,8 @@ To hard delete an object, it is necessary to specify the id of the version. If t
 
 ### 🍕 Multipart Upload
 
-- Minimum data size of **100MB**
-- Data is broken up: max **10,000 parts** between **5MB-5GB** (last part can be smaller)
+- Minimum data size of `100MB`
+- Data is broken up: max `10,000` parts between `5MB-5GB` (last part can be smaller)
 - Parts can fail and be restarted
 - Better transfer rate (speeds of all parts)
 
@@ -138,14 +138,14 @@ Objects are replicated across at least 3 AZs in the AWS region (`99.999999999%` 
 > [!NOTE]
 > Useful for **frequently** accessed data which is **important** and **non replaceable**
 
-### 📦 Standard-IA (Infrequent Access)
+### 📦 Standard-IA
 
 Same as Standard class but with retrieval fee and a minimum duration charge of `30` days (objects can be stored for less but the minimum billing always applies) + minimum capacity charge of `128KB` per object.
 
 > [!NOTE]
 > Useful for **long lived** data which is **important** and **non replaceable** but where access is **infrequent**
 
-### 📦 Standard One Zone-IA (Infrequent Access)
+### 📦 Standard One Zone-IA
 
 Same as Standard-IA class but objects are only stored in **1 AZ** in the region (not as resilient).
 
