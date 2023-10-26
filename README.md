@@ -105,6 +105,9 @@ Customer create and manage a key within KMS. AWS does the encryption with the pr
 
 Isolated permissions are configurable 🙌
 
+> [!NOTE]
+> AWS KMS has a throttling limitation, so to use SSE-KMS with a large volume of upload the solution is to generate a time limited bucket key in KMS that will be used to generate DEKs within S3 (reduces KMS API calls, reducing cost and increasing scalability)
+
 ## Static Website Hosting
 
 It is possible to host HTML documents to a S3 bucket, turning S3 into a static website host. The main file, most likely `index.html`, will be accessible via an endpoint (the address depends on the region and bucket name). Custom domain is doable with R53, but only if the bucket name matches the domain name.
