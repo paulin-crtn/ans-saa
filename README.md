@@ -75,6 +75,36 @@ Uses the AWS Edge Location network: instead of uploading data to a bucket (via t
 > [!WARNING]
 > Limitation to enable it: the bucket name cannot contains period and it needs to be DNS compatible in its naming
 
+## S3 Object Encryption
+
+- Buckets are not encrypted, objects are
+- Encryption in transit happens when transfering data between Users/App and an S3 Endpoint (independently of CSE or SSE)
+- Encryption at rest means encryption where the data is stored (S3 Storage)
+
+### Client-Side Encryption
+
+Customer does the encryption before sending data to the S3 Endpoint. AWS cannot see the data.
+
+### Server-Side Encryption
+
+AWS handles the encryption, from the S3 Endpoint to the S3 Storage (now mandatory).
+
+#### 🔒 Customer-Provided Keys (SSE-C)
+
+Customer provides the plain text object and the key, then AWS does the encryption and discard the key.
+
+#### 🔒 Amazon S3-Managed Keys (SSE-S3) - *this is the default*
+
+Customer only provides the plain text objecy, then AWS does the encryption with a unique key that is also encrypted and stored with the object. Plain text key is discarded and cipher key can only be decrypted with a S3 managed master key.
+
+There is some limitation because anyone with an administrator role will be able to access the decrypted object (not suitable for finance or other regulated sectors).
+
+#### 🔒 KMS Keys Stored (SSE-KMS)
+
+Customer create and manage a key within KMS. AWS does the encryption with the provided key that is also encrypted and stored with the object.
+
+Isolated permissions are configurable 🙌
+
 ## Static Website Hosting
 
 It is possible to host HTML documents to a S3 bucket, turning S3 into a static website host. The main file, most likely `index.html`, will be accessible via an endpoint (the address depends on the region and bucket name). Custom domain is doable with R53, but only if the bucket name matches the domain name.
