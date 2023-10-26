@@ -2,7 +2,7 @@
 
 An object is identified by its `Key`.
 
-## Security & Policies
+## 🤓 Security & Policies
 
 S3 is private by default (only accessible by the account root user of the account which created it). 
 Policies can be used to allow access to buckets and objects:
@@ -32,7 +32,7 @@ Policies can be used to allow access to buckets and objects:
 > [!NOTE]
 > If the is a `Principal` it should be a Resource Policy, if not it should be an Identity policy
 
-## Object Versioning
+## 🗂️ Object Versioning
 
 Disabled by default.
 
@@ -44,48 +44,48 @@ Disabled by default.
 > [!IMPORTANT]
 > Once activated it will be impossible to deactivate it again (versioning can only be suspended)
 
-### Delete
+### 🗑️ Delete
 
 Deleting an object will add a delete marker (a special version of an object) which will hide all previous version of the object. The delete marker can be deleted to undelete/show all previous version of the object.
 
 To hard delete an object, it is necessary to specify the id of the version. If the current version is deleted, then the N-1 version becomes the current version.
 
-#### MFA Delete
+#### 📟 MFA Delete
 
 - Enabled in versioning configuration
 - MFA is required to change bucket versioning state
 - MFA is required to delete versions
 - MFA serial number + code passed with API calls
 
-## Performance
+## 🚀 Performance
 
 `s3:PutObject` allows upload up to **5GB** with a limit of 1 stream which is not optimal in terms of speed and reliability (if the stream fails then all the upload fails).
 
-### Multipart Upload
+### 🍕 Multipart Upload
 
 - Minimum data size of **100MB**
 - Data is broken up: max **10,000 parts** between **5MB-5GB** (last part can be smaller)
 - Parts can fail and be restarted
 - Better transfer rate (speeds of all parts)
 
-### Transfer Acceleration
+### ⚡ Transfer Acceleration
 
 Uses the AWS Edge Location network: instead of uploading data to a bucket (via the public network), it goes to the nearest Edge Location (via the public network) and then it is transferred to the bucket (via the AWS network).
 
 > [!WARNING]
 > Limitation to enable it: the bucket name cannot contains period and it needs to be DNS compatible in its naming
 
-## S3 Object Encryption
+## 👀 S3 Object Encryption
 
 - Buckets are not encrypted, objects are
 - Encryption in transit happens when transfering data between Users/App and an S3 Endpoint (independently of CSE or SSE)
 - Encryption at rest means encryption where the data is stored (S3 Storage)
 
-### Client-Side Encryption
+### 1️⃣ Client-Side Encryption
 
 Customer does the encryption before sending data to the S3 Endpoint. AWS cannot see the data.
 
-### Server-Side Encryption
+### 2️⃣ Server-Side Encryption
 
 AWS handles the encryption, from the S3 Endpoint to the S3 Storage (now mandatory).
 
@@ -108,7 +108,7 @@ Isolated permissions are configurable 🙌
 > [!NOTE]
 > AWS KMS has a throttling limitation, so to use SSE-KMS with a large volume of upload the solution is to generate a time limited bucket key in KMS that will be used to generate DEKs within S3 (reduces KMS API calls, reducing cost and increasing scalability)
 
-## Static Website Hosting
+## 🌎 Static Website Hosting
 
 It is possible to host HTML documents to a S3 bucket, turning S3 into a static website host. The main file, most likely `index.html`, will be accessible via an endpoint (the address depends on the region and bucket name). Custom domain is doable with R53, but only if the bucket name matches the domain name.
 
@@ -117,7 +117,7 @@ S3 hosting can be useful for:
 - Offloading (static resource like images or videos will be in a bucket instead of a compute service)
 - Out-of-band pages (in case of maintenance or outage of the server, we can update the DNS to redirect to a static page)
 
-## Pricing
+## 💶 Pricing
 
 1. **Storage**: see S3 Object Storage Classes
 2. **Data transfer**:
@@ -143,13 +143,13 @@ Create, store and manage symmetric and asymmetric keys in order to achieve crypt
 > [!NOTE]
 > Keys are isolated to a region (but can be replicated to multi-region)
 
-## Data Encryption Keys (DEK) 
+## 🔏 Data Encryption Keys (DEK)
 
 - Works on data > 4KB
 - KMS generate a Plaintext key (used to encrypt the data and then discarded) and a Ciphertext key (used to decrypt the data)
 - Data is stored with encrypted key outside KMS
 - Data and encrypted key must be sent to KMS for decryption (KMS will decrypt the encrypted key)
 
-## Policies and security
+## 🤓 Security & Policies
 
 Unlike other AWS services, KMS has to explicitly be told that keys trust the AWS account that there contain within.
