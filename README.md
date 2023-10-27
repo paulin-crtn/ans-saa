@@ -2,7 +2,7 @@
 
 An object is identified by its `Key`.
 
-## 🤓 Security & Policies
+## 👮‍♂️ Security & Policies
 
 S3 is private by default (only accessible by the account root user of the account which created it). 
 Policies can be used to allow access to buckets and objects:
@@ -180,12 +180,31 @@ Same as Glacier - Flexible class but with a minimum duration charge of `180` day
 > [!NOTE]
 > Useful for **archival** data that rarely - if ever - needs to be accessed (e.g. legal or regulation data storage)
 
-### 👀 Intelligent-Tiering
+### 🤓 Intelligent-Tiering
 
 Monitors and automatically moves any objects not accessed for 30 days to a low cost infrequent access tier and eventually to archive instant access, archive access or deep archive tiers. Cost per 1,000 objects.
 
 > [!NOTE]
 > Useful for **long-lived** with **changing** or **unknown** patterns
+
+## 🕓 Lifecycle Configuration
+
+Set of rules which consist of actions that apply to a bucket or groups of objects depending on some criteria (if X then do Y). Helps to reduce costs and keep buckets tidy.
+
+### 🤿 Transition actions
+
+- Move automatically objects between any storage classes (only down, not upward) - except for `One Zone IA` -> `Glacier Instant Retrieval` !
+- Not based on how often an object is accessed (this is Intelligent-Tiering), but rather over a number of days
+- Objects have to stay at least `30` days in S3 `Standard` before transitionning to `Standard-IA` or `One Zone-IA`
+- Objects have to stay at least `30` days in `Standard-IA` or `One Zone-IA` before transitionning to `Glacier` classes (only if using the same rule 🤷‍♂️)
+
+> [!WARNING]
+> Careful with small object because they can cost more (minimum size of `128KB` or `40KB` depending on the class)
+
+
+### 🚮 Expiration actions
+
+Delete automatically an object.
 
 
 # 🔑 Key Management Service
@@ -212,6 +231,6 @@ Create, store and manage symmetric and asymmetric keys in order to achieve crypt
 - Data is stored with encrypted key outside KMS
 - Data and encrypted key must be sent to KMS for decryption (KMS will decrypt the encrypted key)
 
-## 🤓 Security & Policies
+## 👮‍♂️ Security & Policies
 
 Unlike other AWS services, KMS has to explicitly be told that keys trust the AWS account that there contain within.
