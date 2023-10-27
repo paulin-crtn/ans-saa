@@ -206,6 +206,30 @@ Set of rules which consist of actions that apply to a bucket or groups of object
 
 Delete automatically an object.
 
+## 💿 Replication
+
+- Cross-Region Replication: useful for resilience improvements and latency reduction
+- Same-Region Replication: useful for log aggregation, prod and test sync, resilience (strict sovereignty)
+
+Replication can take place within the same account or to a different account (in this case the destination bucket will not trust the source and will need a policy).
+
+🧰 Options:
+
+- All objects or subset (based on a prefix)
+- Storage class (default is to maintain)
+- Ownership (default is the source account)
+- Replication Time Control (RTC)
+
+📘 Exams:
+
+- By default not retroactive & versionning needs to be on
+- Batch replication can be used to replicate existing objects (must be specifically configured)
+- One-way replication (source to destination) or bi-directional (new, must be specifically configured)
+- Encryption: unencrypted, SSE-S3, SSE-KMS and SSE-C
+- Source bucket owner needs permissions to objects
+- No replication for system events, Glacier or Glacier Deep Archive objects
+- No replication for delete (by default, but this can be added - `DeleteMarkerReplication`)
+
 
 # 🔑 Key Management Service
 
