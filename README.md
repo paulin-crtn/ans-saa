@@ -274,10 +274,16 @@ Can be enabled on new bucket (for existing one, contact AWS support) and require
 
 Specify days and years retention periods.
 
-1. COMPLIANCE: cannot be adjusted, deleted or overwritten (even by the account root user) until retention expires
-2. GOVERNANCE
+1. COMPLIANCE: cannot be adjusted, deleted or overwritten (not even by the account root user) until retention expires
+2. GOVERNANCE: `s3:BypassGovernanceRetention` permission can be granted to an identty allowing lock settings to be adjusted (+ header `x-amz-bypass-governance-retention:true` along with the request)
 
-### Legal Hold
+### ⛓️ Legal Hold
+
+NOT about setting a retention period.
+
+- Set on an object **version**: ON or OFF
+- No deletes or changes on object version until legal hold is removed (`s3:PutObjectLegalHold` is required to add or remove)
+- Prevent accidental deletion of critical object versions
 
 ## Access Points
 
