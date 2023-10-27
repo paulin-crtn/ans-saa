@@ -246,6 +246,22 @@ Give to another person or application access to an S3 object inside a bucket usi
 - Access denied could mean the generating ID never had access... or doesn't now
 - Not recommended to generate with a role but with an identity (IAM user) because URL stops working when temporary credentials expire
 
+## 👌 Select and Glacier Select
+
+Retrieves part of object rather than the entire object. Because object can be up to `5TB`, retrieving a large object takes time and consume all of its size. S3/Glacier Select lets us use SQL-Like statements to select part of the object, **pre-filtered** by S3 (instead of filtering on the client side, once all data have been transfered/consumed).
+
+## 🎉 Event Notifications
+
+Notification generated when events occur in a bucket can be delivered to `SNS`, `SQS` and `Lambda` functions (with the right Resource Policy in order to allow S3 principal access). Event notification is JSON object. Events can be any of the following:
+
+- Object created
+- Object delete
+- Object restore
+- Replication
+
+> [!NOTE]
+> **EventBridge** is an alternative and supports more types of events and more services
+
 
 # 🔑 Key Management Service
 
