@@ -220,7 +220,7 @@ Replication can take place within the same account or to a different account (in
 - Ownership (default is the source account)
 - Replication Time Control (RTC)
 
-📘 Exams:
+🎒 Exams:
 
 - By default not retroactive & versionning needs to be on
 - Batch replication can be used to replicate existing objects (must be specifically configured)
@@ -239,7 +239,7 @@ Give to another person or application access to an S3 object inside a bucket usi
 3. Server communicate the presigned URL to the user
 4. User can access the object using the presigned URL
 
-📘 Exams:
+🎒 Exams:
 
 - You can create a URL for an object you have no access to
 - When using the URL, the permissions match the identity which generated it
@@ -261,6 +261,25 @@ Notification generated when events occur in a bucket can be delivered to `SNS`, 
 
 > [!NOTE]
 > **EventBridge** is an alternative and supports more types of events and more services
+
+## 📗 Logs
+
+It is possible to log bucket and object access from a `Source Bucket` to a `Target Bucket` (configured with `ACL` to allow `S3 Log Delivery Group`). Log files consist of log records. Best efforts log delivery: accesses to Source Bucket are usually logged in Target Bucket within a few hours.
+
+## ⛑️ Object Lock
+
+Can be enabled on new bucket (for existing one, contact AWS support) and requires versioning (individual versions are locked). Write-Once-Read-Many (`WORM`) - No Delete, No Overwrite.
+
+### ⛓️ Retention Period
+
+Specify days and years retention periods.
+
+1. COMPLIANCE: cannot be adjusted, deleted or overwritten (even by the account root user) until retention expires
+2. GOVERNANCE
+
+### Legal Hold
+
+## Access Points
 
 
 # 🔑 Key Management Service
