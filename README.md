@@ -1,6 +1,8 @@
 # 🪣 Simple Storage Service
 
-An object is identified by its `Key`.
+- An object is identified by its `Key`
+- Default limit of S3 buckets in an AWS account is `100`
+- No limit for number of objects in a bucket
 
 ## 👮‍♂️ Security & Policies
 
@@ -99,6 +101,8 @@ Customer only provides the plain text objecy, then AWS does the encryption with 
 
 There is some limitation because anyone with an administrator role will be able to access the decrypted object (not suitable for finance or other regulated sectors).
 
+`AES256` encryption.
+
 #### 🔒 KMS Keys Stored (SSE-KMS)
 
 Customer create and manage a key within KMS. AWS does the encryption with the provided key that is also encrypted and stored with the object.
@@ -110,7 +114,7 @@ Isolated permissions are configurable 🙌
 
 ## 🌎 Static Website Hosting
 
-It is possible to host HTML documents to a S3 bucket, turning S3 into a static website host. The main file, most likely `index.html`, will be accessible via an endpoint (the address depends on the region and bucket name). Custom domain is doable with R53, but only if the bucket name matches the domain name.
+It is possible to host HTML documents to a S3 bucket, turning S3 into a static website host. The main file, most likely `index.html`, will be accessible via an endpoint (the address depends on the region and bucket name). Custom domain is doable with R53, but only if the bucket name matches the domain name. An error document is also required.
 
 S3 hosting can be useful for:
 
