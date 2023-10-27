@@ -230,6 +230,22 @@ Replication can take place within the same account or to a different account (in
 - No replication for system events, Glacier or Glacier Deep Archive objects
 - No replication for delete (by default, but this can be added - `DeleteMarkerReplication`)
 
+## 🖌️ Presigned URLs
+
+Give to another person or application access to an S3 object inside a bucket using your credentials in a safe and secure way. Upload (`PUT`) or download (`GET`).
+
+1. User request access to an object in a private bucket
+2. Server generate a presigned URL (configure to expire at a certain time)
+3. Server communicate the presigned URL to the user
+4. User can access the object using the presigned URL
+
+📘 Exams:
+
+- You can create a URL for an object you have no access to
+- When using the URL, the permissions match the identity which generated it
+- Access denied could mean the generating ID never had access... or doesn't now
+- Not recommended to generate with a role but with an identity (IAM user) because URL stops working when temporary credentials expire
+
 
 # 🔑 Key Management Service
 
