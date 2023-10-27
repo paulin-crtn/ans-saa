@@ -266,7 +266,7 @@ Notification generated when events occur in a bucket can be delivered to `SNS`, 
 
 It is possible to log bucket and object access from a `Source Bucket` to a `Target Bucket` (configured with `ACL` to allow `S3 Log Delivery Group`). Log files consist of log records. Best efforts log delivery: accesses to Source Bucket are usually logged in Target Bucket within a few hours.
 
-## ⛑️ Object Lock
+## 🤚 Object Lock
 
 Can be enabled on new bucket (for existing one, contact AWS support) and requires versioning (individual versions are locked). Write-Once-Read-Many (`WORM`) - No Delete, No Overwrite.
 
