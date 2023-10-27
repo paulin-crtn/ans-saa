@@ -259,7 +259,8 @@ Notification generated when events occur in a bucket can be delivered to `SNS`, 
 - Object restore
 - Replication
 
-> [!NOTE] > **EventBridge** is an alternative and supports more types of events and more services
+> [!NOTE]
+> **EventBridge** is an alternative and supports more types of events and more services
 
 ## 📗 Logs
 
