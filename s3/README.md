@@ -6,7 +6,7 @@
 
 ## 👮‍♂️ Security & Policies
 
-S3 is private by default (only accessible by the account root user of the account which created it). 
+S3 is private by default (only accessible by the account root user of the account which created it).
 Policies can be used to allow access to buckets and objects:
 
 - **Identity policies** (what that identity can access): limited because identity policies can only be attached to identities in **own** account
@@ -16,18 +16,15 @@ Policies can be used to allow access to buckets and objects:
 
 ```json
 {
-   "Version":"2012-10-17",
-   "Statement":[
-      {
-         "Principal": "*",
-         "Effect":"Allow",
-         "Action":[
-            "s3:GetObject",
-            "s3:GetObjectVersion"
-         ],
-         "Resource":"arn:aws:s3:::DOC-EXAMPLE-BUCKET/*",
-      }
-   ]
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Principal": "*",
+      "Effect": "Allow",
+      "Action": ["s3:GetObject", "s3:GetObjectVersion"],
+      "Resource": "arn:aws:s3:::DOC-EXAMPLE-BUCKET/*"
+    }
+  ]
 }
 ```
 
@@ -95,7 +92,7 @@ AWS handles the encryption, from the S3 Endpoint to the S3 Storage (now mandator
 
 Customer provides the plain text object and the key, then AWS does the encryption and discard the key.
 
-#### 🔒 Amazon S3-Managed Keys (SSE-S3) - *this is the default*
+#### 🔒 Amazon S3-Managed Keys (SSE-S3) - _this is the default_
 
 Customer only provides the plain text objecy, then AWS does the encryption with a unique key that is also encrypted and stored with the object. Plain text key is discarded and cipher key can only be decrypted with a S3 managed master key.
 
@@ -126,7 +123,7 @@ S3 hosting can be useful for:
 The following are charged:
 
 1. **Storage** (prices depends on the selected storage class)
-2. **Data transfer**: 📤 Transfer OUT (from S3 to internet) - *NB: 📥 Transfer IN (to S3 from internet) is always free*
+2. **Data transfer**: 📤 Transfer OUT (from S3 to internet) - _NB: 📥 Transfer IN (to S3 from internet) is always free_
 3. **Request**: lifecycle transition, data retrieval, POST, PUT, GET, etc.
 
 ## 🏢 Storage Classes
@@ -205,7 +202,6 @@ Set of rules which consist of actions that apply to a bucket or groups of object
 > [!WARNING]
 > Careful with small object because they can cost more (minimum size of `128KB` or `40KB` depending on the class)
 
-
 ### 🚮 Expiration actions
 
 Delete automatically an object.
@@ -263,8 +259,7 @@ Notification generated when events occur in a bucket can be delivered to `SNS`, 
 - Object restore
 - Replication
 
-> [!NOTE]
-> **EventBridge** is an alternative and supports more types of events and more services
+> [!NOTE] > **EventBridge** is an alternative and supports more types of events and more services
 
 ## 📗 Logs
 
@@ -296,32 +291,3 @@ Simplify managing access to S3 buckets and objects: rather than having 1 bucket 
 Each access point has its own endpoint address created via the AWS Console or `aws s3control create-access-point`. Access Point policies control permission for access via the Access Point & is functionally equivalent to a bucket policy. Access Point policy can restric identities to certain prefix(s), tags or actions based on need.
 
 Each Access Point has a unique DNS address for network address. Access Points can be configured for access via VPC (requires a VPC endpoint).
-
-
-# 🔑 Key Management Service
-
-Create, store and manage symmetric and asymmetric keys in order to achieve cryptographic operations (encrypt and decrypt).
-
-> [!IMPORTANT]
-> **Keys never leave KMS** - Provides FIPS 140-2 (L2)
-
-- KMS Keys are **logical** (ID, date, policy, desc & state) and backed by **physical** key material
-- Keys are generated or imported in KMS and stored in an encrypted form (never in plain text)
-- AWS owned vs. Customer owned
-- Support rotation
-- Backing key (can still decrypt data with previous keys)
-- Can be used for up to **4KB** of data
-
-> [!NOTE]
-> Keys are isolated to a region (but can be replicated to multi-region)
-
-## 🔏 Data Encryption Keys (DEK)
-
-- Works on data > 4KB
-- KMS generate a Plaintext key (used to encrypt the data and then discarded) and a Ciphertext key (used to decrypt the data)
-- Data is stored with encrypted key outside KMS
-- Data and encrypted key must be sent to KMS for decryption (KMS will decrypt the encrypted key)
-
-## 👮‍♂️ Security & Policies
-
-Unlike other AWS services, KMS has to explicitly be told that keys trust the AWS account that there contain within.
