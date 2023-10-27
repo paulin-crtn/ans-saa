@@ -285,13 +285,13 @@ NOT about setting a retention period.
 - No deletes or changes on object version until legal hold is removed (`s3:PutObjectLegalHold` is required to add or remove)
 - Prevent accidental deletion of critical object versions
 
-## ⏹️ Access Points
+## 🧑‍💻 Access Points
 
-Simplify managing access to S3 buckets and objects: rather than having 1 bucket with 1 policy we can create many access points, each with different policies, each with different network access controls.
+Simplify managing access to S3 buckets and objects: rather than having 1 bucket with 1 policy we can create many access points, each with different policies, each with different network access controls. Useful for large bucket with multiple identities and complex policy.
 
 Each access point has its own endpoint address created via the AWS Console or `aws s3control create-access-point`. Access Point policies control permission for access via the Access Point & is functionally equivalent to a bucket policy. Access Point policy can restric identities to certain prefix(s), tags or actions based on need.
 
-Each Access Point has a unique DNS address for network address. Access Points can configured for access via VPC (requires a VPC endpoint).
+Each Access Point has a unique DNS address for network address. Access Points can be configured for access via VPC (requires a VPC endpoint).
 
 
 # 🔑 Key Management Service
