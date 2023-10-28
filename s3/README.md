@@ -2,7 +2,7 @@
 
 GLOBAL storage platform - **regional** based/resilient. Public service, unlimited data & multi-user. Great for large scale data storage, distribution or upload. Input and/or Output to many AWS products.
 
-- Buckets are containers for objects and is identified by a **globally unique name**
+- Buckets are containers for objects and are identified by a **globally unique name**
 - Bucket name must be `3-63` characters, all lower case and no underscores (start with a lower case or a number, cannot be IP formatted)
 - Default limit of S3 buckets in an AWS account is `100` (soft limit) or `1000` (hard limit)
 - Flat structure (UI can trick you to think otherwise)
