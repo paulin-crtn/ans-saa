@@ -66,7 +66,7 @@ To hard delete an object, it is necessary to specify the id of the version. If t
 
 ## 🚀 Performance
 
-`s3:PutObject` allows upload up to ˋ5GB` with a limit of 1 stream which is not optimal in terms of speed and reliability (if the stream fails then all the upload fails).
+`s3:PutObject` allows upload up to `5GB` with a limit of 1 stream which is not optimal in terms of speed and reliability (if the stream fails then all the upload fails).
 
 ### 🍕 Multipart Upload
 
