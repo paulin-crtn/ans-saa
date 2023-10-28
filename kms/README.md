@@ -2,7 +2,8 @@
 
 Create, store and manage symmetric and asymmetric keys in order to achieve cryptographic operations (encrypt and decrypt).
 
-> [!IMPORTANT] > **Keys never leave KMS** - Provides FIPS 140-2 (L2)
+> [!IMPORTANT]
+> **Keys never leave KMS** - Provides FIPS 140-2 (L2)
 
 - KMS Keys are **logical** (ID, date, policy, desc & state) and backed by **physical** key material
 - Keys are generated or imported in KMS and stored in an encrypted form (never in plain text)
