@@ -2,17 +2,14 @@
 
 ## 🏘️ Accounts
 
-When creating an AWS Account, you provide an account name (e.g. PROD), a unique address email and a credit card.
+- When creating an AWS Account, you provide an account name (e.g. PROD), a unique address email and a credit card
+- An AWS Account is a container for `Identities` (users) and `Resources`
+- By default all access to an AWS Account & resources is denied, except for the account root user
+- The account root user has full control over all AWS Account and any resources created within it & cannot be restricted.
+- IAM Users, Groups and Roles can be created and given FULL or LIMITED permissions
 
-An AWS Account is a container for `Identities` (users) and `Resources`.
-
-By default all access to an AWS Account & resources is denied, except for the account root user.
-
-The account root user has full control over all AWS Account and any resources created within it & cannot be restricted.
-
-Identity and Access Management (IAM) Users, Groups and Roles can be created and given FULL or LIMITED permissions.
-
-Use separate account for separate things (DEV, TEST, PROD) or products or clients.
+> [!NOTE]
+> Use separate account for separate things (DEV, TEST, PROD) or products or clients
 
 ## 📟 Multi-Factor Authentication
 
