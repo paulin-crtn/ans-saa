@@ -1,8 +1,16 @@
 # 🪣 Simple Storage Service
 
-- An object is identified by its `Key`
-- Default limit of S3 buckets in an AWS account is `100`
-- No limit for number of objects in a bucket
+GLOBAL storage platform - **regional** based/resilient. Public service, unlimited data & multi-user. Great for large scale data storage, distribution or upload. Input and/or Output to many AWS products.
+
+- Buckets are containers for objects and is identified by a **globally unique name**
+- Bucket name must be `3-63` characters, all lower case and no underscores (start with a lower case or a number, cannot be IP formatted)
+- Default limit of S3 buckets in an AWS account is `100` (soft limit) or `1000` (hard limit)
+- Flat structure (UI can trick you to think otherwise)
+- An object is identified by its `Key` (its name), has a value (content data) & some extra information (Version ID, Metadata, Access Control & Subresources)
+- Object can have a size between 0 bytes and `5TB`
+- Unlimited number of objects in a bucket
+
+⚠️ S3 is an object store (not file or block: cannot mount an S3 bucket)
 
 ## 👮‍♂️ Security & Policies
 
@@ -259,8 +267,7 @@ Notification generated when events occur in a bucket can be delivered to `SNS`, 
 - Object restore
 - Replication
 
-> [!NOTE]
-> **EventBridge** is an alternative and supports more types of events and more services
+> [!NOTE] > **EventBridge** is an alternative and supports more types of events and more services
 
 ## 📗 Logs
 
