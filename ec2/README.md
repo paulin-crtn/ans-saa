@@ -21,6 +21,10 @@ IAAS - Provides Virtual Machines (Instances).
 
 AMI can be used to create an EC2 instance or can be created from an EC2 instance. An AMI contains:
 
-- Permissions: Public (everyone allowed, e.g. linux or windows), Owner (implicit allow), Explicit (specific AWS accounts allowed)
+- Permissions: **Public Access**, **Owner** (implicit allow), **Explicit** (specific AWS accounts allowed)
 - Root Volume: what boot the volume system
 - Block Device Mapping: determines which volume is the boot volume and which volume is the data volume
+
+> [!NOTE]
+> **Instance** and **Network** settings are not stored in an AMI
+

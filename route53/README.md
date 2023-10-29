@@ -2,6 +2,11 @@
 
 GLOBAL SERVICE, globally resilient. 
 
+- There are `13` root servers managed by `12` large organizations
+- `IANA` - Manages the DNS root zone
+- `Registry` - Owns TLD domains and officialize ownership
+- `Registrar` - Rent domains (the seller, e.g. namecheap)
+
 ## 🏪 Register Domains
 
 R53 checks if a domain is available, if so it:
@@ -22,7 +27,7 @@ R53 checks if a domain is available, if so it:
 
 ### ⏺️ Nameserver
 
-Record type which allow delegation to occur in DNS. 
+Record type which allow **delegation** to occur in DNS. 
 
 For example the `.com` zone will have multiple **nameserver records** inside it for `amazon.com`. These nameserver records are how the `.com` delegation happens for `amazon.com` and they point at servers managed by the `amazon.com` team and these servers host the a `amazon.com` zone. Inside it are **DNS records** such a `www`.
 
