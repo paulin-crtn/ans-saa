@@ -57,3 +57,33 @@ Service Resilience:
 ### 🎯 Edge Locations
 
 Local distribution points.
+
+## 💪 HA vs FT vs DR
+
+### 💯 High Availability
+
+HA is about **maximizing system online time** (e.g. `99.999%` = `5.26 minutes` p/year downtime). It's about fast and automatic recovery of issues (not about preventing user disruption). It comes with a cost: sometimes HA needs redundent servers or infrastructure to be in place ready to switch customer over to, in the event of a disaster to minimize downtime.
+
+### 🤒 Fault Tolerant
+
+FT means that if a system has faults then it should **continue to operate properly though a failure** without impacting customers. Cost more and harder to implement.
+
+> [!NOTE]
+> We can take the example of a plane with a motor engine problem: bacause HA won't ever be 100%, it's better to have FT than HA 😅
+
+### 📋 Disaster Recovery
+
+Set of policies, tools and **procedures to enable the recovery** of infrastructure and systems: what to do when disaster occurs ? Without a plan, bad decisions are made based on shock, lack of sleep and fear of how to recover. DR is not just about the tech but about **knowledge** and processes.
+
+> [!IMPORTANT]
+> DO NOT store backups at the same location as your systems
+
+## 🤝 Shared Responsability Model
+
+### 👀 AWS 
+
+RESPONSABILITY FOR SECURITY **OF** THE CLOUD: Regions, AZ, Edge Locations, Hardware (compute, storage, database), etc.
+
+### 👀 Customer
+
+RESPONSABILITY FOR SECURITY **IN** THE CLOUD: Encryption, App, IAM, OS configuration, customer data, etc.
