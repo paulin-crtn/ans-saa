@@ -15,6 +15,6 @@ Pre-configured by AWS and less customizable.
 
 - 1 per region only (can be removed and recreated)
 - Default VPC CIDR is always `172.31.0.0/16`
-- Already configured to have one subnet in each AZ: `172.31.0.0/20`, `172.31.16.0/20` and `172.31.32.0/20`
+- Already configured to have one subnet in each AZ: e.g. `172.31.0.0/20`, `172.31.16.0/20` and `172.31.32.0/20` for 3 AZ
 - Provided with Internet Gateway, Security Group & NACL
 - Subnets assign public `IPv4` addresses
