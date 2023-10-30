@@ -2,9 +2,9 @@
 
 NO COST - GLOBAL SERVICE
 
-- User: Identities which represent humans or applications that need access to the account
+- User: Identities which represent Humans or Applications that need access to the account
 - Group: Collection of related users (e.g. development team, finance or HR)
-- Role: Used by AWS Services or for granting external access to the account
+- Role: Used by AWS Services for granting external access to the account
 
 Policy is a document (or object) that **ALLOW** or **DENY** access to AWS services when attached to a user, group or role.
 
@@ -14,15 +14,37 @@ Policy is a document (or object) that **ALLOW** or **DENY** access to AWS servic
 - Authenticate: prove you are who you claim to be
 - Authorize: allow or deny access to resources
 
+## 👤 Users
+
+- `5,000` maximum per account
+- A user can be part of maximum `10` groups
+
+## 👥  Groups
+
+Just containers for users !
+
+- `300` maximum per account (soft limit)
+- No limit for number of users in a group
+- Cannot login to IAM Groups
+- Groups can have policies attached to them (**Inline** or **Managed**)
+- A user can be part of multiple group: he inherits the policies of all the groups he is in + his own policy
+- No group with all users by default (need to be created and managed if needed)
+- NO NESTING (group inside a group)
+
+> [!IMPORTANT]
+> Groups are NOT a true identity: they cannot be reference as a `Principal` in a **Resource Policy**
+
 ## 🔑 Access Keys
 
-Long term credentials to log in an AWS account, composed of an `Access Key ID` and a `Secret Access Key`.
+Application or CLI long term credentials to log in an AWS account, composed of an `Access Key ID` and a `Secret Access Key`.
 
 - An IAM user only has 1 username and 1 password but can have multiple access keys
 - Access keys can be created, deleted, made active or inactive
 - After creation, AWS won't show again the `Secret Access Key` (store it in a safe place)
 
 ## 📝 Policies
+
+**DENY** always overrule **ALLOW**: `Explicit DENY` -> `Explicit Allow` -> `IMPLICIT DENY` (default, no statement)
 
 ```json
 {
@@ -39,4 +61,17 @@ Long term credentials to log in an AWS account, composed of an `Access Key ID` a
 ```
 
 > [!NOTE]
-> If there is a `Principal` it should be a Resource Policy, if not it should be an Identity policy
+> If there is a `Principal` it is a Resource Policy. `Principal` represents an authenticated or unauthenticated User or Role.
+
+- **Inline Policy**: One policy for each identity (useful for policy exception)
+- **Managed Policy**: One policy assigned to multiple identities (reusable, low management overhead) - AWS Managed Policy (might not fit exact needs) and Customer Managed Policy 
+
+## 🧬 Amazon Resource Name
+
+Uniquely identify resources within any AWS acccounts: `arn:partition:service:region:account-id:resource-type:resource-id`. Can sometimes omit a field or use a wildcard.
+
+`arn:aws:s3:::catgifs` - Represents the bucket (the resource)
+`arn:aws:s3:::catgifs/*` - Represents the objects (what is inside the resource)
+
+> [!NOTE]
+> ARN is used to reference a User or a Role in a **Resource Policy**
