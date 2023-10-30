@@ -58,7 +58,7 @@ IAM Roles are also identities but they are used differently than IAM Users: IAM 
 - Service might create/delete a role or allow you to during setup or within IAM
 - You CANNOT delete the role until it's no longer required
 
-To pass a role (and its permissions) to an AWS service, a user must have permissions to pass the role to the service. This helps administrators ensure that only approved users can configure a service with a role that grants permissions. To allow a user to pass a role to an AWS service, you must grant the `PassRole` permission to the user's IAM user, role, or group.
+To pass a role (and its permissions) to an AWS service, a user must have the `PassRole` permission to pass the role to the service. This helps administrators ensure that only approved users can configure a service with a role that grants permissions.
 
 ## 🔑 Access Keys
 
