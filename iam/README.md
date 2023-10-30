@@ -71,7 +71,7 @@ Application or CLI long term credentials to log in an AWS account, composed of a
 
 ## 📝 Policies
 
-**DENY** always overrule **ALLOW**: `Explicit DENY` -> `Explicit Allow` -> `IMPLICIT DENY` (default, no statement)
+**DENY** always overrule **ALLOW**: `Explicit DENY` > `Explicit Allow` > `IMPLICIT DENY` (default, no statement)
 
 ```json
 {
