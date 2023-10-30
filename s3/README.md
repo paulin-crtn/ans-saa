@@ -18,7 +18,7 @@ S3 is private by default (only accessible by the account root user of the accoun
 Policies can be used to allow access to buckets and objects:
 
 - **Identity policies** (what that identity can access): limited because identity policies can only be attached to identities in **own** account
-- **Resource policies** (who can access that resource): can ALLOW or DENY same or different account and anonymous principal
+- **Resource policies** (who can access that resource): can ALLOW or DENY same or different account and anonymous Principal
 - **Access Control List**: limited and deprecated
 - **Block Public Access**: safeguard for public bucket
 
