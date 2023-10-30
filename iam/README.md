@@ -51,6 +51,15 @@ IAM Roles are also identities but they are used differently than IAM Users: IAM 
 - For ID Federation: Give permissions to an external identity provider (allowing external identitites to assume a role) + no AWS credentials on the App (used existing customer logins) + scales great (large number of accounts) 🙌
 - For Cross-Account Access
 
+## 🔗 Service-linked roles
+
+- IAM role linked to a specific AWS service
+- Predefined by a service, providing permissions that a service needs to interact with other AWS services on your behalf
+- Service might create/delete a role or allow you to during setup or within IAM
+- You CANNOT delete the role until it's no longer required
+
+To pass a role (and its permissions) to an AWS service, a user must have permissions to pass the role to the service. This helps administrators ensure that only approved users can configure a service with a role that grants permissions. To allow a user to pass a role to an AWS service, you must grant the `PassRole` permission to the user's IAM user, role, or group.
+
 ## 🔑 Access Keys
 
 Application or CLI long term credentials to log in an AWS account, composed of an `Access Key ID` and a `Secret Access Key`.
