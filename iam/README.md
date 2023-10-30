@@ -2,9 +2,9 @@
 
 NO COST - GLOBAL SERVICE
 
-- User: Identities which represent Humans or Applications that need access to the account (1 user = 1 entity)
-- Group: Collection of related users (e.g. development team, finance or HR)
-- Role: Identities that can be assumable by anyone who needs it (1 role = 1+ entities)
+- **User**: Identities which represent Humans or Applications that need access to the account (1 user = 1 entity)
+- **Group**: Collection of related users (e.g. development team, finance or HR)
+- **Role**: Identities that can be assumable by anyone who needs it (1 role = 1+ entities)
 
 Policy is a document (or object) that **ALLOW** or **DENY** access to AWS services when attached to a user, group or role.
 
