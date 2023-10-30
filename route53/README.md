@@ -5,7 +5,7 @@ GLOBAL SERVICE, globally resilient.
 - There are `13` root servers managed by `12` large organizations
 - `IANA` - Manages the DNS root zone
 - `Registry` - Owns TLD domains and officialize ownership
-- `Registrar` - Rent domains (the seller, e.g. namecheap)
+- `Registrar` - Rent domains (e.g. Namecheap, GoDaddy...)
 
 ## 🏪 Register Domains
 
@@ -13,7 +13,7 @@ R53 checks if a domain is available, if so it:
 
 - Creates a `zone file` called `hosted zone`: database which contains all of the DNS information for a particular domain (RECORDS)
 - Creates a `name service` for this zone: servers which R53 creates and manages which are distributed globally - most of the time there are 4 of these `nameservers` for one individual zone
-- Assigns the hosted `zone onto` these four managed `nameservers` (NS)
+- Assigns the `hosted zone` onto these four managed `nameservers` (NS)
 - Adds these `nameserver` records into the `zone file` of the registry (top level domain, e.g. `.org`)
 
 ## 📄 Host Zones
