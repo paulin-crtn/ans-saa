@@ -48,7 +48,7 @@ An IAM identity that you can create in your account that has specific permission
 
 - With AWS services: Give permission to a service to do something in another service: Lambda, S3, DDB., etc.
 - In emergency situation: Give extra permissions to a user in some case
-- For ID Federation: Give permissions to an external identity provider (allowing external identitites to assume a role) + no AWS credentials on the App (used existing customer logins) + scales great (large number of accounts) 🙌
+- For ID Federation: Give permissions to an external identity provider (allowing external identitites to assume a role) = no AWS credentials on the App (used existing customer logins) + scales great (large number of accounts) 🙌
 - For Cross-Account Access
 
 ## 🔗 Service-linked roles
