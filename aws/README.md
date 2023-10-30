@@ -3,7 +3,7 @@
 ## 🏘️ Accounts
 
 - When creating an AWS Account, you provide an account name (e.g. PROD), a unique address email and a credit card
-- An AWS Account is a container for `Identities` (users) and `Resources`
+- An AWS Account is a container for `Identities` and `Resources`
 - By default all access to an AWS Account & resources is denied, except for the account root user
 - The account root user has full control over all AWS Account and any resources created within it & cannot be restricted.
 - IAM Users, Groups and Roles can be created and given FULL or LIMITED permissions
@@ -50,7 +50,7 @@ An area of ​​the world offering AWS services and consisting of at least 3 Av
 
 Service Resilience:
 
-- Globally Resilient: region can fail without impacting the service (e.g. IAM or S3)
+- Globally Resilient: region can fail without impacting the service (e.g. IAM)
 - Region Resilient: AZ can fail without impacting the service
 - AZ Resilient: Prone to failure despite some backup configuration
 
@@ -82,8 +82,8 @@ Set of policies, tools and **procedures to enable the recovery** of infrastructu
 
 ### 👀 AWS 
 
-RESPONSABILITY FOR SECURITY **OF** THE CLOUD: Regions, AZ, Edge Locations, Hardware (compute, storage, database), etc.
+Responsability for security **OF** the cloud: Regions, AZ, Edge Locations, Hardware (compute, storage, database), etc.
 
 ### 👀 Customer
 
-RESPONSABILITY FOR SECURITY **IN** THE CLOUD: Encryption, App, IAM, OS configuration, customer data, etc.
+Responsability for security **IN** the cloud: Encryption, App, IAM, OS configuration, customer data, etc.
