@@ -97,8 +97,8 @@ Application or CLI long term credentials to log in an AWS account, composed of a
 
 Uniquely identify resources within any AWS acccounts: `arn:partition:service:region:account-id:resource-type:resource-id`. Can sometimes omit a field or use a wildcard.
 
-`arn:aws:s3:::catgifs` - Represents the bucket (the resource)
-`arn:aws:s3:::catgifs/*` - Represents the objects (what is inside the resource)
+- `arn:aws:s3:::catgifs` - Represents the bucket (the resource)
+- `arn:aws:s3:::catgifs/*` - Represents the objects (what is inside the resource)
 
 > [!NOTE]
 > ARN is used to reference a User or a Role in a **Resource Policy**
