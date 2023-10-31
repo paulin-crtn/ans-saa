@@ -4,7 +4,7 @@
 
 - When creating an AWS Account, you provide an account name (e.g. PROD), a unique address email and a credit card
 - An AWS Account is a container for `Identities` and `Resources`
-- By default all access to an AWS Account & resources is denied, except for the account root user
+- By default, all access to an AWS Account & resources is denied, except for the account root user
 - The account root user has full control over all AWS Account and any resources created within it & cannot be restricted.
 - IAM Users, Groups and Roles can be created and given FULL or LIMITED permissions
 
@@ -62,14 +62,14 @@ Local distribution points.
 
 ### 💯 High Availability
 
-HA is about **maximizing system online time** (e.g. `99.999%` = `5.26 minutes` p/year downtime). It's about fast and automatic recovery of issues (not about preventing user disruption). It comes with a cost: sometimes HA needs redundent servers or infrastructure to be in place ready to switch customer over to, in the event of a disaster to minimize downtime.
+HA is about **maximizing system online time** (e.g. `99.999%` = `5.26 minutes` p/year downtime). It's about fast and automatic recovery of issues (not about preventing user disruption). It comes with a cost: sometimes HA needs redundant servers or infrastructure to be in place ready to switch customer over to, in the event of a disaster to minimize downtime.
 
 ### 🤒 Fault Tolerant
 
 FT means that if a system has faults then it should **continue to operate properly though a failure** without impacting customers. Cost more and harder to implement.
 
 > [!NOTE]
-> We can take the example of a plane with a motor engine problem: bacause HA won't ever be 100%, it's better to have FT than HA 😅
+> We can take the example of a plane with a motor engine problem: because HA won't ever be 100%, it's better to have FT than HA 😅
 
 ### 📋 Disaster Recovery
 
@@ -78,12 +78,25 @@ Set of policies, tools and **procedures to enable the recovery** of infrastructu
 > [!IMPORTANT]
 > DO NOT store backups at the same location as your systems
 
-## 🤝 Shared Responsability Model
+## 🤝 Shared Responsibility Model
 
 ### 👀 AWS 
 
-Responsability for security **OF** the cloud: Regions, AZ, Edge Locations, Hardware (compute, storage, database), etc.
+Responsibility for security **OF** the cloud: Regions, AZ, Edge Locations, Hardware (compute, storage, database), etc.
 
 ### 👀 Customer
 
-Responsability for security **IN** the cloud: Encryption, App, IAM, OS configuration, customer data, etc.
+Responsibility for security **IN** the cloud: Encryption, App, IAM, OS configuration, customer data, etc.
+
+## 🪄 Organizations
+
+For large business with multiple accounts it is recommended to create a **Management Account** from a **Standard Account** in order to manage easily all accounts. Accounts will need to accept the invitation from Management Account in order to be part of the organization. Standard account is now referenced as **Member Accounts** of that organization.
+
+> [!NOTE]
+> This will create an **Organization Root** with an **Organizational Unit** (can have multiple UI and be nested)
+
+> [!IMPORTANT]
+> Management Account is the **Payer Account** of all accounts inside the organization: **Consolidated Billing** + Consolidation of reservations and volume discounts
+
+- It is possible to create a Member Account from a Management Account (just need a valid unique email address) - No invite process 🙂
+- Do not need Users inside every single AWS account: IAM roles can be used to allow IAM Users to access other AWS accounts (identities can be handled in the Management Account or a dedicated Member Account)

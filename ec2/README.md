@@ -14,8 +14,8 @@ IAAS - Provides Virtual Machines (Instances).
 ## 🔄 Instance Lifecycle
 
 - `Running` - Consume compute, ram, storage and network resources
-- `Stopped` - Can be restart, still consume/bill EBS storage
-- `Terminated` - Cannot be restart, no cost
+- `Stopped` - Can be restarted, still consume/bill EBS storage
+- `Terminated` - Cannot be restarted, no cost
 
 ## 🌇 Amazon Machine Image
 
@@ -27,4 +27,3 @@ AMI can be used to create an EC2 instance or can be created from an EC2 instance
 
 > [!NOTE]
 > **Instance** and **Network** settings are not stored in an AMI
-

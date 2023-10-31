@@ -1,3 +1,4 @@
+
 # 🧙 Identity and Access Management
 
 NO COST - GLOBAL SERVICE
@@ -9,7 +10,7 @@ NO COST - GLOBAL SERVICE
 Policy is a document (or object) that **ALLOW** or **DENY** access to AWS services when attached to a user, group or role.
 
 > [!IMPORTANT]
-> Always give the fewest permissions necessary: **Least Priviledge Principle**
+> Always give the fewest permissions necessary: **Least Privilege Principle**
 
 - Authenticate: prove you are who you claim to be
 - Authorize: allow or deny access to resources
@@ -32,7 +33,7 @@ Just containers for users !
 - NO NESTING (group inside a group)
 
 > [!IMPORTANT]
-> Groups are NOT a true identity: they cannot be reference as a `Principal` in a **Resource Policy**
+> Groups are NOT a true identity: they cannot be referenced as a `Principal` in a **Resource Policy**
 
 ## 🧢 Roles
 
@@ -48,7 +49,7 @@ An IAM identity that you can create in your account that has specific permission
 
 - With AWS services: Give permission to a service to do something in another service: Lambda, S3, DDB., etc.
 - In emergency situation: Give extra permissions to a user in some case
-- For ID Federation: Give permissions to an external identity provider (allowing external identitites to assume a role) = no AWS credentials on the App (used existing customer logins) & scales great (large number of accounts) 🙌
+- For ID Federation: Give permissions to an external identity provider (allowing external identities to assume a role) = no AWS credentials on the App (used existing customer logins) & scales great (large number of accounts) 🙌
 - For Cross-Account Access
 
 ## 🔗 Service-linked roles
@@ -95,7 +96,7 @@ Application or CLI long term credentials to log in an AWS account, composed of a
 
 ## 🧬 Amazon Resource Name
 
-Uniquely identify resources within any AWS acccounts: `arn:partition:service:region:account-id:resource-type:resource-id`. Can sometimes omit a field or use a wildcard.
+Uniquely identify resources within any AWS accounts: `arn:partition:service:region:account-id:resource-type:resource-id`. Can sometimes omit a field or use a wildcard.
 
 - `arn:aws:s3:::catgifs` - Represents the bucket (the resource)
 - `arn:aws:s3:::catgifs/*` - Represents the objects (what is inside the resource)

@@ -6,7 +6,7 @@ A Virtual Network inside AWS.
 - Private and isolated: only services deployed into the same VPC can communicate (unless decide otherwise)
 - 2 types: `Default VPC` and `Custom VPCs`
 - VPC CIDR: start and end range of IP addresses that a VPC can use to communicate
-- VPC can subdivided into subnets (each subnet represents an AZ, set at the creation and cannot be changed): RESILIENCE 🙌
+- VPC can subdivide into subnets (each subnet represents an AZ, set at the creation and cannot be changed): RESILIENCE 🙌
 - Each subnet uses part of the VPC's IP address range (cannot overlap with each other)
 
 ## 🥸 Default VPC Facts

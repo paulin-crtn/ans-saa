@@ -11,7 +11,7 @@ GLOBAL SERVICE, globally resilient.
 
 R53 checks if a domain is available, if so it:
 
-- Creates a `zone file` called `hosted zone`: database which contains all of the DNS information for a particular domain (RECORDS)
+- Creates a `zone file` called `hosted zone`: database which contains all the DNS information for a particular domain (RECORDS)
 - Creates a `name service` for this zone: servers which R53 creates and manages which are distributed globally - most of the time there are 4 of these `nameservers` for one individual zone
 - Assigns the `hosted zone` onto these four managed `nameservers` (NS)
 - Adds these `nameserver` records into the `zone file` of the registry (top level domain, e.g. `.org`)
@@ -57,7 +57,7 @@ Add arbitrary text to a domain in order to provide additional functionality (e.g
 
 Numeric value in seconds. 
 
-It tells the `Resolver server` how long the DNS is valid so it does not have to query it again for a given time (it's a cache). Useful to avoid multiple unecessery query but can cause DNS failure (`Client` -> `Resolver` -> `Root` -> `.com` -> `amazon.com`).
+It tells the `Resolver server` how long the DNS is valid so it does not have to query it again for a given time (it's a cache). Useful to avoid multiple unnecessary query but can cause DNS failure (`Client` -> `Resolver` -> `Root` -> `.com` -> `amazon.com`).
 
 > [!NOTE]
 > If doing any work that involves changing any DNS records it is recommended to lower TTL value days or weeks in advance to limit caching issue

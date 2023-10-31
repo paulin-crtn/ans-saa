@@ -2,7 +2,7 @@
 
 Collects and manages operational data.
 
-- **Metrics** : Collection of related data point in a time ordered structure: CPU Usage, Network IN/OUT, Disk IO. Datapoint contains a timestamp and a value. Dimensions separate datapoints for different things or perspectives within the same metric.
+- **Metrics** : Collection of related data point in a time ordered structure: CPU Usage, Network IN/OUT, Disk IO. Datapoint contains a timestamp and a value. Dimensions separate data-points for different things or perspectives within the same metric.
 
 - **Logs** : In order to keep things separated, CloudWatch uses **namespace** (container for related data).
 
