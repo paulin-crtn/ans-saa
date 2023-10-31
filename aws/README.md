@@ -122,7 +122,7 @@ SCP can be attached to:
 
 ## 🕵🏼 CloudTrail
 
-Monitor and log any API call or activities done in an AWS account by a user, a role or a service: `CloudTrail Event`.
+Monitor and log any API call or activities done in an AWS account by a user, a role or a service: `CloudTrail Event` (it's like an account auditing).
 
 - `90`days stored by default in `Event History` - Enabled by default & no cost for 90 day history
 - **Management** Events (e.g. configuration of a resource) and **Data** Events (e.g. data accessed, inserted or updated)
