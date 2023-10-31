@@ -119,3 +119,18 @@ SCP can be attached to:
 
 > [!IMPORTANT]
 > **Management Accounts** are never impacted by SCP (cannot be restricted): best practice to not use resources in Management Accounts
+
+## 🕵🏼 CloudTrail
+
+Monitor and log any API call or activities done in an AWS account by a user, a role or a service: `CloudTrail Event`.
+
+- `90`days stored by default in `Event History` - Enabled by default & no cost for 90 day history
+- **Management** Events (e.g. configuration of a resource) and **Data** Events (e.g. data accessed, inserted or updated)
+- Only **Management** Events is enabled by default (because too much data for **Data** Events)
+- A trail is way to provide a configuration to CloudTrail on how to operate: can be configured for One Region or All Regions
+- Global Service Event: some services log events globally to one region (`us-east-1`) like `IAM`, `STS` or `CloudFront`, so CloudTrail needs to be configured to catch them
+- Can create an **organizational trail**: create a trail from the **Management Account** of an organization will store all information of all accounts 🙌
+- **Event logs** can be stored in **CloudWatch Logs** or indefinitely into an **S3** bucket (only charge for storage) 🙂
+
+> [!IMPORTANT]
+> NOT REALTIME - There is delay (within 15 minutes)
