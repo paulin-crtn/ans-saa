@@ -118,7 +118,7 @@ SCP can be attached to:
 - **Individual Account** (one or many)
 
 > [!IMPORTANT]
-> **Management Accounts** are never impacted by SCP (cannot be restricted): best practice to not use resources in Management Accounts
+> **Management Accounts** are never impacted by SCP (cannot be restricted): best practice is to not use resources in Management Accounts
 
 ## 🕵🏼 CloudTrail
 
@@ -134,3 +134,39 @@ Monitor and log any API call or activities done in an AWS account by a user, a r
 
 > [!IMPORTANT]
 > NOT REALTIME - There is delay (within 15 minutes)
+
+## 🗼 Control Tower
+
+Quick and easy setup of **multi-account** environments: it's like a factory for accounts 😮 (uses template). **Orchestrates** other AWS services to provide this functionality.
+
+### 👾 Landing Zone
+
+Multi-account environment part.
+
+- Built with Organizations, Config, CloudFormation, CloudWatch, etc.
+- **Security** Organizational Unit (centralised logging & auditing) & **Sandbox** Organizational Unit
+- Can create more Organizational Unit
+- IAM Identity Center: SSO, ID Federation
+- Monitoring and Notifications: CloudWatch and SNS
+- End User account provisioning via Service Catalog
+
+### 👾 Guard Rails
+
+**Rules** for multi-account **governance**: Mandatory, Strongly Recommended or Elective (= optional).
+
+- **Preventive**: stop you doing things (enforced or not enabled)
+- **Detective**: compliance checks (AWS Config rules) - CLEAR, IN VIOLATION or NO ENABLED
+
+### 👾 Account Factory
+
+Automates and Standardises new account creation for cloud admins or end users (with appropriate permissions).
+
+- Can automatically add Guardrails
+- Can give account admin rights to a named user with IAM Identity Center
+- Account & network standard configuration
+- Account can be closed or repurposed
+- Can be fully integrated with a business SDLC
+
+### 👾 Dashboard
+
+Single page oversight of the entire environment.
