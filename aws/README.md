@@ -39,7 +39,7 @@ The difference is on a NETWORKING perspective.
 
 ### 🏜️ Regions
 
-An area of ​​the world offering AWS services and consisting of at least 3 Availability Zones. Each AZ is composed of multiple data center. AZs are isolated from each other and connected with high speed, redundant networking (resilient **logical** -not physical- system).
+An area of the world offering AWS services and consisting of at least 3 Availability Zones. Each AZ is composed of multiple data center. AZs are isolated from each other and connected with high speed, redundant networking (resilient **logical** -not physical- system).
 
 - Geographic Separation - Isolated Fault Domain
 - Geopolitical Separation - Different governance
@@ -88,15 +88,34 @@ Responsibility for security **OF** the cloud: Regions, AZ, Edge Locations, Hardw
 
 Responsibility for security **IN** the cloud: Encryption, App, IAM, OS configuration, customer data, etc.
 
-## 🪄 Organizations
+## 🏢 Organizations
 
 For large business with multiple accounts it is recommended to create a **Management Account** from a **Standard Account** in order to manage easily all accounts. Accounts will need to accept the invitation from Management Account in order to be part of the organization. Standard account is now referenced as **Member Accounts** of that organization.
 
 > [!NOTE]
-> This will create an **Organization Root** with an **Organizational Unit** (can have multiple UI and be nested)
+> This will create an **Organization Root** that can contains none, one or many **Organizational Unit** (Organizational Unit can be nested)
 
 > [!IMPORTANT]
 > Management Account is the **Payer Account** of all accounts inside the organization: **Consolidated Billing** + Consolidation of reservations and volume discounts
 
 - It is possible to create a Member Account from a Management Account (just need a valid unique email address) - No invite process 🙂
 - Do not need Users inside every single AWS account: IAM roles can be used to allow IAM Users to access other AWS accounts (identities can be handled in the Management Account or a dedicated Member Account)
+
+## 🛂 Service Control Policies
+
+SCPs are **account permissions boundaries**: they limit what the account can do (so they are restricting what the account root user can allow even if the account root user cannot be directly restricted). 
+
+- Do not grant permissions (still need to give identities) but can restrict what permission can be given or not
+- **Allow list** (this is the list created by default with `fullAWSAccess`) vs **Deny list** (can be deleted so the implicit deny prevails, then add allow list when needed: less admin overhead)
+
+> [!NOTE]
+> Effective permissions for identities within an account are the overlap between any identity policies and any applicable SCPs
+
+SCP can be attached to:
+
+- **Organization Root**
+- **Organizational Unit** (one or many): will impact all accounts or nested Organizational Unit within
+- **Individual Account** (one or many)
+
+> [!IMPORTANT]
+> **Management Accounts** are never impacted by SCP (cannot be restricted): best practice to not use resources in Management Accounts
