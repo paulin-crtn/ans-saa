@@ -107,7 +107,10 @@ Good to know:
 
 ### 🚙 Simple Routing
 
-Supports 1 Record per name (e.g. `www`) and each Record can have multiple values (e.g. `1.2.3.3`, `1.2.3.4`, etc.). All values are returned in a random order.
+Supports 1 Record per name (e.g. `www`) and each Record can have multiple values (e.g. `1.2.3.3`, `1.2.3.4`, etc.). 
+
+- All values are returned in a random order
+- DO NOT support health check
 
 🎒 Use it when you want to route requests towards **one service** such as a web server.
 
@@ -122,3 +125,56 @@ Supports multiple Records with the same name (e.g. `www`):
 > A common architecture is to use failover for "out of band" failure/maintenance page for a service (e.g. EC2/S3)
 
 🎒 Use it when you want to configure active/passive failover.
+
+### 🚙 Multi Value Routing
+
+Supports multiple Records with the same name (e.g. `www`).
+
+- Up to 8 healthy records are returned (if more exist, 8 are randomly selected)
+- Each record is independent and can have an associated health check
+- Any records which fail health checks won't be returned when queried
+- Client chooses and uses 1 value
+
+🎒 Use it to improves availability (not a replacement for load balancing).
+
+### 🚙 Weighted Routing
+
+Supports multiple Records with the same name (e.g. `www`). 
+
+- Specify a weight for each record
+- Each record is returned based on its record weight vs total weight (e.g. 30%)
+- If a chosen record is unhealthy, the process of selection is repeated until a healthy record is chosen
+- If weight is 0, then the record is not returned (if every weight is set to 0, all records are equally returned)
+
+🎒 Use it for simple load balancing or **testing new software versions**.
+
+### 🚙 Latency Routing
+
+Supports multiple Records with the same name (e.g. `www`) in each AWS Region.
+
+- Specify a region for each record
+- The record returned is the one which offers the lowest estimated latency & is healthy
+- If a record is unhealthy, then the next lowest latency is returned to the client
+- Use an IP lookup service + latency table under the hood (NOT REAL TIME)
+
+🎒 Use it for **performance** and user experience optimisation.
+
+### 🚙 Geolocation Routing
+
+Supports multiple Records with the same name (e.g. `www`).
+
+- Close to latency routing but records are tagged with location.
+- Order: `states` (USA only) -> `country` -> `continent` -> `default` (or NO ANSWER)
+
+> [!IMPORTANT]
+> Geolocation doesn't return the closest records, only **RELEVANT** (location) records (it's NOT about proximity)
+
+🎒 Use it for regional restriction, language specific content or load balancing across regional endpoints.
+
+### 🚙 Geoproximity Routing
+
+Aims to provide records which are as close to customers as possible.
+
+- Close to latency routing but based on **distance**
+- Records can be tagged with an AWS region (or lat & long coordinates if not AWS)
+- **Bias** can be added to rules in order to **increase** or **decrease** a region size
