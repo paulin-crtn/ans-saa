@@ -25,7 +25,7 @@ Collects and manages operational data. In order to keep things separated, CloudW
 > [!NOTE]
 > `CloudWatch Agent` is required when data is outside AWS (e.g. on-premises or in another cloud)
 
-## 🎉 Events 
+## 🔔 Events 
 
 - Alarm is linked to a metric
 - State can be: `INSUFFICIENT_DATA`, `OK` or `ALARM` (can trigger an SNS or action)
