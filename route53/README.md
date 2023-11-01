@@ -5,7 +5,7 @@ GLOBAL SERVICE, globally resilient. Accessible from the public internet & VPCs.
 - There are `13` root servers managed by `12` large organizations
 - `IANA` - Manages the DNS root zone
 - `Registry` - Owns TLD domains and officialize ownership
-- `Registrar` - Rent domains (e.g. Namecheap, GoDaddy...)
+- `Registrar` - Domains registration (e.g. Namecheap, GoDaddy...)
 
 ## 🏪 Register Domains
 
@@ -178,3 +178,23 @@ Aims to provide records which are as close to customers as possible.
 - Close to latency routing but based on **distance**
 - Records can be tagged with an AWS region (or lat & long coordinates if not AWS)
 - **Bias** can be added to rules in order to **increase** or **decrease** a region size
+
+## 🔁 Interoperability
+
+R53 can do BOTH or either **Domain Registrar** or **Domain Hosting**.
+
+> [!NOTE]
+> If done separately, it will be necessary to pass the allocated Name Servers details to the Registrar (who handles the TLD registration) 
+
+## 🥷🏻 DNSSEC
+
+Attackers sometimes hijack traffic to internet endpoints such as web servers by intercepting DNS queries and returning their own IP addresses to DNS resolvers in place of the actual IP addresses for those endpoints. Users are then routed to the IP addresses provided by the attackers in the spoofed response, for example, to fake websites.
+
+You can protect your domain from this type of attack, known as DNS spoofing or a man-in-the-middle attack, by configuring Domain Name System Security Extensions (DNSSEC), a protocol for securing DNS traffic.
+
+🎒 Exams:
+
+- Create KMS Public and Private `KSK` (Key Signing Key) in `us-east-1`
+- R53 handles internally the creation of a `ZSK` (Zone Signing Key)
+- DNSSEC validation can be enabled for VPCs: invalid results on DNSSEC enabled zones won't be returned
+- Create CloudWatch Alarms for `DNSSECInternalFailure` and `DNSSECKeySigningKeysNeedingAction` 
