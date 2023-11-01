@@ -1,6 +1,6 @@
 # 🌐 Route 53
 
-GLOBAL SERVICE, globally resilient. 
+GLOBAL SERVICE, globally resilient. Accessible from the public internet & VPCs.
 
 - There are `13` root servers managed by `12` large organizations
 - `IANA` - Manages the DNS root zone
@@ -11,17 +11,26 @@ GLOBAL SERVICE, globally resilient.
 
 R53 checks if a domain is available, if so it:
 
-- Creates a `zone file` called `hosted zone`: database which contains all the DNS information for a particular domain (RECORDS)
+- Creates a `zone file` called `hosted zone`: database which contains all the DNS information for a particular domain (Resource **RECORDS**)
 - Creates a `name service` for this zone: servers which R53 creates and manages which are distributed globally - most of the time there are 4 of these `nameservers` for one individual zone
 - Assigns the `hosted zone` onto these four managed `nameservers` (NS)
 - Adds these `nameserver` records into the `zone file` of the registry (top level domain, e.g. `.org`)
 
-## 📄 Host Zones
+## 📄 Hosted Zones
 
 - Zone files in AWS
 - Hosted on 4 managed name servers
-- Can be private or private (linked to VPC(s))
+- Public or private
 - Stores records (recordsets)
+
+> [!NOTE]
+> Externally registered domains can point at R53 Public Zone
+
+### 🕵 Private Hosted Zone
+
+- Associated with VPCs and only accessible in those VPCs
+- VPCs can use the R53 Resolver `VPC +2` Address as their DNS Resolver to connect to Public Zone
+- Split-view (overlapping **public** & **private**) for PUBLIC and INTERNAL use with the same zone name
 
 ## 🔠 DNS Record type
 
@@ -40,7 +49,19 @@ Map host names (e.g. `www`) to IP addresses.
 
 ### ⏺️ CNAME
 
-Host to host (cannot point directly to an IP address). It's like an alias.
+Maps a name to another name (cannot point directly to an IP address), e.g. `www.catagram.io` -> `catagram.io`.
+
+- CNAME is invalid for apex (naked domain), e.g. `catagram.io`
+- Many AWS services use DNS Name (ELBs)
+- With just CNAME `catagram.io` -> `ELB` would be invalid
+
+#### ALIAS
+
+Maps a Name to an AWS Resource.
+
+- AWS only (not a DNS standard)
+- Can be used both for apex (naked domain) and normal records
+- Should be the same "Type" as what the record is pointing at (e.g. `A Alias`)
 
 ### ⏺️ MX
 
@@ -57,9 +78,18 @@ Add arbitrary text to a domain in order to provide additional functionality (e.g
 
 Numeric value in seconds. 
 
-It tells the `Resolver server` how long the DNS is valid so it does not have to query it again for a given time (it's a cache). Useful to avoid multiple unnecessary query but can cause DNS failure (`Client` -> `Resolver` -> `Root` -> `.com` -> `amazon.com`).
+It tells the `Resolver server` how long the DNS is valid, so it does not have to query it again for a given time (it's a cache). Useful to avoid multiple unnecessary query but can cause DNS failure (`Client` -> `Resolver` -> `Root` -> `.com` -> `amazon.com`).
 
 > [!NOTE]
 > If doing any work that involves changing any DNS records it is recommended to lower TTL value days or weeks in advance to limit caching issue
 
 Getting a result from the authoritative source (e.g. `amazon.com`) is called an **Authoritative answer** (Non-Authoritative if it comes from the Resolver).
+
+## 🛣 R53 Routing
+
+### 🚙 Simple Routing
+
+Supports 1 Record per name (e.g. `www`) and each Record can have multiple values (e.g. `1.2.3.3`, `1.2.3.4`, etc.).
+
+- All values are returned in a random order
+- Use Simple Routing when you want to route requests towards **one service** such as a web server
