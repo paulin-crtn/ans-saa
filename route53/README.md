@@ -85,11 +85,40 @@ It tells the `Resolver server` how long the DNS is valid, so it does not have to
 
 Getting a result from the authoritative source (e.g. `amazon.com`) is called an **Authoritative answer** (Non-Authoritative if it comes from the Resolver).
 
+## 💖 Health Checks
+
+Monitor the health and performance of your web applications, web servers, and other resources. Each health check that you create can monitor one of the following:
+
+- The health of a specified resource, such as a web server
+- The status of other health checks (calculated)
+- The status of an Amazon CloudWatch alarm
+
+Good to know:
+
+- Separated from (but used by) records
+- Health checkers are **located globally** and can check anything (just need an IP address 😊)
+- Health checkers checks every `30s` (every 10s costs extra): `Healthy` or `Unhealthy`
+- TCP, HTTP(S), HTTP(S) with String Matching (more accurate, checks more than the status code)
+
+> [!NOTE]
+> If `18%+` of health checkers report as **healthy**, the health check is healthy 🙌 (based on the average response time, if there is a response)
+
 ## 🛣 R53 Routing
 
 ### 🚙 Simple Routing
 
-Supports 1 Record per name (e.g. `www`) and each Record can have multiple values (e.g. `1.2.3.3`, `1.2.3.4`, etc.).
+Supports 1 Record per name (e.g. `www`) and each Record can have multiple values (e.g. `1.2.3.3`, `1.2.3.4`, etc.). All values are returned in a random order.
 
-- All values are returned in a random order
-- Use Simple Routing when you want to route requests towards **one service** such as a web server
+🎒 Use it when you want to route requests towards **one service** such as a web server.
+
+### 🚙 Failover Routing
+
+Supports multiple Records with the same name (e.g. `www`): 
+
+- If the target of the health check is **Healthy** the primary record is used
+- If the target of the health check is **Unhealthy** the secondary record is used
+
+> [!NOTE]
+> A common architecture is to use failover for "out of band" failure/maintenance page for a service (e.g. EC2/S3)
+
+🎒 Use it when you want to configure active/passive failover.
