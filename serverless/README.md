@@ -22,7 +22,6 @@ Public AWS Service. HA, Scalable (Region resilient) and Fully Managed.
 
 - Great for decoupling applications, worker pools, Batch for future processing, etc.
 - Messages `<=256KB` in size
-- Received messages are **hidden** (`VisibilityTimeout`)... then either reappear (retry) or are explicitly deleted
 - **Dead-Letter Queues** can be used for problem messages
 - ASGs can scale and Lambdas invoke based on queue length
 - A single request can have `1-10` messages, up to a maximum total payload of `256KB`
@@ -34,18 +33,35 @@ Public AWS Service. HA, Scalable (Region resilient) and Fully Managed.
 > [!NOTE]
 > SNS and SQS Fanout: Message is added into an SNS Topic and multiple SQS subscribed to it
 
-### FIFO
+Received messages are **hidden** from the queue (`VisibilityTimeout`)... then either reappear (retry) or are explicitly deleted.
+
+- Default is 30 seconds - between 0 second and 12 hours
+- Set on Queue or Per-Message
+- Used to allow automatic reprocessing
+
+### 📦 FIFO
 
 - Guarantee exactly once delivery: **duplicates are removed**
 - Guarantee the order: First-In First-Out (great when we need to process in a sequential order)
 - Up to `300` transactions per second, or `3,000` messages with batching (300 transactions of 10 messages) => Not great with scaling
 - Must have `.fifo` suffix in order to be a valid FIFO queue
 
-### Standard
+### 📦 Standard
 
 - Guarantee **at least once delivery** (but could be more 😬)
 - No guarantee on the order of that delivery (Best-Effort Ordering)
 - More like multi-lane highways => Great for scaling because it's easy to add a lane (near unlimited Transaction Per Second)
+
+### ⏳ Delay Queues
+
+- A Delay queue has a `DelaySeconds` set (default is 0 seconds, up to 15 minutes)
+- Messages added to the queue will be invisible for this delay (start off in an invisible state)
+- `ReceiveMessage` operations won't return any messages
+- Message timers allow a per-message invisibility to be set, overriding any queue setting (not supported on FIFO queues)
+
+### ☠️ Dead-Letter Queues
+
+
 
 ## 🤖 State Machines
 
