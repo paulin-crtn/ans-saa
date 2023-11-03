@@ -2,7 +2,7 @@
 
 Collects and manages operational data. In order to keep things separated, CloudWatch uses **namespace** (container for related data).
 
-## 📊 Metrics
+## 📊 CloudWatch Metrics
 
 - Collection of related data point in a time ordered structure: CPU Usage, Network IN/OUT, Disk IO
 - Datapoint contains a timestamp and a value
@@ -11,7 +11,7 @@ Collects and manages operational data. In order to keep things separated, CloudW
 > [!NOTE]
 > `CloudWatch Agent` is required when data is outside AWS (e.g. on-premises or in another cloud)
 
-## 📒 Logs
+## 📒 CloudWatch Logs
 
 - Public Service (regional): usable from AWS or on-premises
 - Store, Monitor and access logging data (timestamp + some data)
@@ -25,15 +25,15 @@ Collects and manages operational data. In order to keep things separated, CloudW
 > [!NOTE]
 > `CloudWatch Agent` is required when data is outside AWS (e.g. on-premises or in another cloud)
 
-## 🔔 Events 
+## 🔔 CloudWatch Events - EventBridge
 
 Delivers a near real-time stream of system events.
 
-- If X happens (or at Y time(s)) then do Z
-- Alarm is linked to a metric
-- State can be: `INSUFFICIENT_DATA`, `OK` or `ALARM` (can trigger an SNS or action)
+- `CloudWatch Events` / `EventBridge` monitors events present in the `Event Bus`
+- There is only one Event bus in `CloudWatch` (the default one) but EventBridge can have additional event buses
+- Rules can be **SCHEDULED** or match an **EVENT PATTERN** and the event can be routed to one or many targets (e.g. Lambda)
 
 > [!NOTE]
-> AWS encourage to use `EventBridge` instead
+> AWS encourage to use `EventBridge` (same API but with more features)
 
-- A default Event bus for the account (the only one in `CloudWatch`)
+- Alarms (linked to a metric) can be set - State can be: `INSUFFICIENT_DATA`, `OK` or `ALARM` (can trigger an SNS or action)
