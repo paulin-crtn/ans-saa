@@ -1,11 +1,11 @@
-# ⭐ Lambda
+# ⭐ Serverless - Lambda
 
 Function as a Service (FaaS): **short running and focused piece of code**. Event-Driven service.
 
 - Deployment package: code + configuration (up to `50MB` zipped and `250MB` unzipped)
 - Functions are loaded and run in a **runtime** environment (e.g. Node 18.2) - Also referred to as an Execution Context
 - Billed for the duration of function execution: `15min` MAX (900 seconds)
-- No state: each time a lambda is invoked, it can be inside a brand-new environment
+- Stateless: each time a lambda is invoked, it can be inside a brand-new environment
 - Common uses: Serverless App, File Processing, Database Triggers, Serverless CRON, Realtime Stream Data Processing, Events, etc.
 
 The environment has:
