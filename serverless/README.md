@@ -61,7 +61,18 @@ Received messages are **hidden** from the queue (`VisibilityTimeout`)... then ei
 
 ### ☠️ Dead-Letter Queues
 
+Useful when a message processing fails multiple times (`ReceiveCount` is incremented each time)
 
+- **Redrive Policy**: specifies the Source Queue, the DLQ and the conditions where messages will be moved from one to the other
+- Define `maxReceiveCount`, when `ReceiveCount` > `maxReceiveCount` and message isn't deleted, it's moved to the DLQ
+- Can be notified when a message goes to DLQ
+- Can test or apply separate processing
+
+> [!IMPORTANT]
+> SQS queues have retention periods for messages (message is dropped after that)
+
+[!IMPORTANT]
+> Enqueue timestamp is set on the message the first time it is added to the Standard or FIFO queue (timestamp is not updated, and not related to DLQ). Retention period of a DLQ is generally longer than the source queue.
 
 ## 🤖 State Machines
 
