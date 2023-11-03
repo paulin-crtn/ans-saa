@@ -1,11 +1,11 @@
 # ⭐ Lambda
 
-Function as a Service (FaaS): **short running and focused piece of code**.
+Function as a Service (FaaS): **short running and focused piece of code**. Event-Driven service.
 
 - Deployment package: code + configuration (up to `50MB` zipped and `250MB` unzipped)
-- Functions are loaded and run in a **runtime** environment (e.g. Node 18.2)
+- Functions are loaded and run in a **runtime** environment (e.g. Node 18.2) - Also referred to as an Execution Context
 - Billed for the duration of function execution: `15min` MAX (900 seconds)
-- No state: each time a lambda is invoked it's inside a brand-new environment
+- No state: each time a lambda is invoked, it can be inside a brand-new environment
 - Common uses: Serverless App, File Processing, Database Triggers, Serverless CRON, Realtime Stream Data Processing, Events, etc.
 
 The environment has:
@@ -60,10 +60,34 @@ Lambda resource policy controls what services and accounts can INVOKE lambda fun
 
 ### ➡️ Asynchronous
 
-- Typically used when AWS services invoke lambda functions (they don't wait for a response)
+Typically used when AWS services invoke lambda functions (they don't wait for a response).
+
 - Lambda is responsible for reprocessing in case of failure (between 0 and 2, configurable) - Handle the retry logic
 - The Lambda function needs to be idempotent (reprocessing a result should have the same end state)
 - Events can be sent to dead letter queues after repeated failed processing
 - Lambda supports destinations (SQS, SNS, Lambda & EventBridge) where successful or failed events can be sent
 
 ### ➡️ Event Source mappings
+
+Typically used on streams or queues which don't support event generation to invoke lambda (Kinesis, DynamoDB Streams, SQS).
+
+- Event Source Mapping map data from a Source Batch to an Event Batch
+- Lambda function can handle multiple Events within a Batch (just be careful with execution timeout)
+- SQS Queues or SNS topics can be used for any discarded failed event batches
+
+> [!IMPORTANT]
+> Permissions from the lambda execution role are used by the event source mapping to interact with the event source
+
+## 🔢 Versions
+
+- A version is the **code** + **configuration** of the lambda function
+- A version is **immutable** - it never changes once published & has its **own ARN**
+- `$Latest` points at the latest version
+- Aliases (DEV, STAGE, PROD) point at a version - can be changed
+
+## ⏱️ Start up time
+
+- **Cold start**: Full creation and configuration of an execution context (including code download) - 100ms
+- **Warm start**: Invocation re-use previous execution context - 1-2ms
+- Concurrent executions will use multiple (potentially new) contexts
+- **Provisioned concurrency** can be used: create and keep X contexts warm and ready to use (improve start speeds)

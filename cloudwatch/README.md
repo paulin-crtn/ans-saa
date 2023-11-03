@@ -27,5 +27,13 @@ Collects and manages operational data. In order to keep things separated, CloudW
 
 ## 🔔 Events 
 
+Delivers a near real-time stream of system events.
+
+- If X happens (or at Y time(s)) then do Z
 - Alarm is linked to a metric
 - State can be: `INSUFFICIENT_DATA`, `OK` or `ALARM` (can trigger an SNS or action)
+
+> [!NOTE]
+> AWS encourage to use `EventBridge` instead
+
+- A default Event bus for the account (the only one in `CloudWatch`)
