@@ -1,4 +1,3 @@
-
 # 🧙 Identity and Access Management
 
 NO COST - GLOBAL SERVICE
@@ -26,7 +25,7 @@ Just containers for users !
 
 - `300` maximum per account (soft limit)
 - No limit for number of users in a group
-- Cannot login to IAM Groups
+- Cannot log in to IAM Groups
 - Groups can have policies attached to them (**Inline** or **Managed**)
 - A user can be part of multiple group: he inherits the policies of all the groups he is in + his own policy
 - No group with all users by default (need to be created and managed if needed)
@@ -103,3 +102,5 @@ Uniquely identify resources within any AWS accounts: `arn:partition:service:regi
 
 > [!NOTE]
 > ARN is used to reference a User or a Role in a **Resource Policy**
+
+# 🥸 Cognito

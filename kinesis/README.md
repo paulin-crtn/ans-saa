@@ -38,7 +38,7 @@ Can deliver data (transformed or not) to:
 > [!NOTE]
 > Producers can send records to data streams or directly at Firehose. Firehose can also read from a data stream as a consumer.
 
-## Data Analytics
+## 📊 Data Analytics
 
 Process and analyze realtime streaming data using standard SQL.
 
@@ -47,6 +47,16 @@ Process and analyze realtime streaming data using standard SQL.
 - Destination to Kinesis Data Streams, Firehose or Lambda
 
 > [!NOTE]
-> Useful for **REALTIME** time-series analytics, dashboards or metrics & SQL queries
+> Useful for **REALTIME** time-series analytics, dashboards or metrics
 
-## Video Stream
+## 🎞️ Video Stream
+
+Ingest live video data from Producers: security cameras, smartphones, cars, drones, time-serialised audio, thermal, depth and radar data (1 Kinesis Video Stream per camera).
+
+- Consumers can access data frame by frame... or as needed
+- Can **persist** and **encrypt** data (in-transit or at rest) data
+- Integrates with other AWS services (e.g. Rekognition and Connect)
+- Can be used for event-driven video analytics workflow
+
+> [!IMPORTANT]
+> CANNOT access data directly via storage (EBS, EFS, S3): only via service APIs
