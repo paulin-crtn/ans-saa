@@ -20,9 +20,9 @@ Public AWS Service. HA and Scalable (Region resilient).
 
 Public AWS Service. HA, Scalable (Region resilient) and Fully Managed.
 
-- Great for decoupling applications, worker pools, Batch for future processing, etc.
+- Great for **decoupling** applications, **asynchronous** communications, worker pools, batch for future processing, etc.
+- 1 production group, 1 consumption group (not like Kinesis)
 - Messages `<=256KB` in size
-- **Dead-Letter Queues** can be used for problem messages
 - ASGs can scale and Lambdas invoke based on queue length
 - A single request can have `1-10` messages, up to a maximum total payload of `256KB`
 - Each `64KB` chunk of a payload is billed as 1 request (for example, an API action with a 256 KB payload is billed as 4 requests)
@@ -38,6 +38,9 @@ Received messages are **hidden** from the queue (`VisibilityTimeout`)... then ei
 - Default is 30 seconds - between 0 second and 12 hours
 - Set on Queue or Per-Message
 - Used to allow automatic reprocessing
+
+> [!NOTE]
+> No persistence of messages after process, no window (not like Kinesis)
 
 ### 📦 FIFO
 
