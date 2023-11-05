@@ -104,3 +104,22 @@ Uniquely identify resources within any AWS accounts: `arn:partition:service:regi
 > ARN is used to reference a User or a Role in a **Resource Policy**
 
 # 🥸 Cognito
+
+**Authentication**, **Authorization** and **user management** for web/mobile apps.
+
+### 🏊‍ User Pools 
+
+- Sign-in and get a JSON Web Token
+- User directory management and profiles, **SIGN-UP and SIGN-IN**, MFA & other security features
+- Works with most application and some AWS products (mostly API Gateway)
+- Allow sign-in using external identity providers (Facebook, Google, Apple...) + SAML
+
+> [!IMPORTANT]
+> Most AWS services cannot use JWT and require AWS credentials
+
+### 🏊‍ Identity Pools
+
+- Allow to offer access to Temporary AWS Credentials: used to access AWS resource 🙌
+- Unauthenticated Identities - Guest Users
+- Federated Identities: **SWAP IDENTITIES** from external identities (Facebook, Google, Apple...), SAML or User Pool for short term AWS Credentials
+- Cognito assumes an IAM role defined in Identity Pool and returns temporary AWS credentials to the client
