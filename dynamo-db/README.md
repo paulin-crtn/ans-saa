@@ -51,7 +51,7 @@ Speed of reads and writes. Set on a table.
 
 ### 🔍 Query
 
-- Accepts a single `PK` value and optionally an `SK`
+- Accepts ONLY a single `PK` value (and optionally an `SK`)
 - Capacity consumed is the size of all returned items
 - Further filtering discards data (capacity is still consumed)
 
@@ -79,3 +79,29 @@ When a data is written to the database and then immediately read, is that data i
 
 - Reads **connect to the leader node** to get the **most up-to-date copy of data**
 - Cost more, harder to implement and harder to scale
+
+## 📍 LSI & GSI
+
+- Indexes are **alternative views** on table data (alternative access pattern)
+- Can use Query with a different `SK` (LSI) or a different `PK` & `SK` (GSI)
+- Projected Attributes: `ALL`, `KEYS_ONLY` or `INCLUDE` (can choose which attributes are projected into the index)
+- Use GSIs as default, LSI only when strong consistency is required
+
+### #️⃣ Local Secondary Index
+
+- **MUST** be created with a table
+- Max `5` LSI per base table
+- Alternative `SK` on the table (same PK)
+- Shares the RCU and WCU with the table
+- Indexes are **sparse**: only items which have a value in the index alternative SK are added to the index
+
+### #️⃣ Global Secondary Index
+
+- Can be created at any time 
+- Max `20` GSI per base table
+- Alternative `PK` and `SK`
+- GSIs have their own RCU and WCU allocations
+- Indexes are **sparse**: only items which have values in the new PK (and optional SK) are added
+
+> [!IMPORTANT]
+> GSI's are **always eventually consistent**, replication between base and GSI is **Asynchronous**
