@@ -105,3 +105,30 @@ When a data is written to the database and then immediately read, is that data i
 
 > [!IMPORTANT]
 > GSI's are **always eventually consistent**, replication between base and GSI is **Asynchronous**
+
+## 🔴 Streams
+
+Time ordered list of ITEM CHANGES in a table.
+
+- `24-hour` rolling window
+- Enabled on a per-table basis
+- Records `INSERTS`, `UPDATES` and `DELETES`
+- Different **View Types** influence what is in the stream: `KEYS_ONLY`, `NEW_IMAGE`, `OLD_IMAGE`, `NEW_AND_OLD_IMAGES`
+
+## 🔫 Triggers
+
+Serverless Event-Driven Architecture: **STREAMS + LAMBDA**
+
+- ITEM changes generate an event
+- That event contains the data which changed
+- An action is taken using that data
+
+## 🌎 Global Tables
+
+Provides **multi-master cross-region** REPLICATION.
+
+- Tables are created in multiple regions and added to the same global table
+- **Last writer wins** is used for conflict resolution
+- Reads and Writes can occur to any region (generally sub-second replication between regions)
+- Strongly consistent reads ONLY in the same region as writes
+- Provides Global HA and Global DR
