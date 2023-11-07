@@ -132,3 +132,42 @@ Provides **multi-master cross-region** REPLICATION.
 - Reads and Writes can occur to any region (generally sub-second replication between regions)
 - Strongly consistent reads ONLY in the same region as writes
 - Provides Global HA and Global DR
+
+## ⚡ DynamoDB Accelerator
+
+In-memory cache for DynamoDB (much faster reads, reduces costs). Private Service (VPC).
+
+- DAX is accessed via an endpoint: **CACHE HITS** are returned in **MICROSECONDS** (MISSES in milliseconds) - Low Latency
+- Less complexity for the app developer & tighter integration
+
+#### Traditional Cache
+
+1. Application checks cache for data: a **CACHE MISS** occurs if data isn't cached
+2. Data is loaded from the database with a **separate operation** and SDK
+3. Cache is updated with retrieved data (subsequent queries will load data from cache as a CACHE HIT)
+
+#### DAX
+
+1. Applications uses the DAX SDK and make a single call for the data which is returned by DAX
+2. DAX either returned the data from its cache or retrieves it from the database and the caches it
+
+## 📐 Architecture
+
+- DAX is deployed in multiple AZ inside a VPC (HA 🙌)
+- **ITEM CACHE** holds results of `GetItem` or `BatchGetItem`
+- **QUERY CACHE** holds results of `Query` or `Scan` + **parameters used**
+- **Write-Through** is supported: data is written to DDB then DAX
+- Primary NODE (Writes) and Replicas (Read)
+- Scale **UP** and Scale **OUT** (Bigger or More)
+
+> [!IMPORTANT]
+> **DO NOT use DAX** for App that require **Strongly Consistent Reads** or **Heavy Writes**
+
+## ⏱️ Time To Live
+
+- Timestamp for automatic DELETE of ITEMS
+- Enabled on a table for a specific attribute 
+- A Per-Partition process periodically runs, checking the current time (in seconds since epoch) to the value in the **TTL attribute**: ITEMS where the TTL attribute is older than the current time are set to **expire**
+- Another per-partition background process scans for expired items and removes them from tables and indexes: a DELETE RECORD is added to streams if enabled
+- Any DELETE operation caused by TTL are background system processes: don't impact table performance and not chargeable
+- A stream of TTL deletions can be enabled (24-hour window)
