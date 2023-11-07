@@ -171,3 +171,17 @@ In-memory cache for DynamoDB (much faster reads, reduces costs). Private Service
 - Another per-partition background process scans for expired items and removes them from tables and indexes: a DELETE RECORD is added to streams if enabled
 - Any DELETE operation caused by TTL are background system processes: don't impact table performance and not chargeable
 - A stream of TTL deletions can be enabled (24-hour window)
+
+# 🪣 Athena
+
+Serverless Interactive Querying Service
+
+- Ad-hoc queries on data: structured, semi-structured and unstructured (XML, JSON, CSV, Apache, CloudTrail, VPC Flowlogs, Glue Data Catalog, Web Server Logs, etc.)
+- Pay only for data consumed (and for data stored in S3)
+- **Schema-on-read** - Table-like translation (relational-like when read): **NO NEED to load or transform data before**
+- **Original data never changed - remains on S3**
+- Tabled are defined in advance in a data catalog and **data is projected** through when read: allows **SQL-LIKE QUERIES** on data without transforming source data
+- Output can be sent to visualisation tools
+
+> [!IMPORTANT]
+> **Athena Federated Query** handles other data sources than S3: RDS, DynamoDB, DocumentDB, CloudWatch Logs, MySQL, PostgreSQL, etc.
