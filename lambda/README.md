@@ -23,7 +23,7 @@ The environment has:
 - Offers the best performance because no customer specific VPC networking is required
 
 > [!IMPORTANT]
-> Lambda functions have NO ACCESS to VPC based services unless public IPs are provided & security controls allow external access
+> Lambda functions have NO ACCESS to VPC unless public IPs are provided & security controls allow external access
 
 ### 🙈 Private
 
