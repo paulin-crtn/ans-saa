@@ -58,7 +58,7 @@ Service Resilience:
 
 Local distribution points.
 
-## 💪 HA vs FT vs DR
+## 💪 High Availability vs Fault Tolerant vs Disaster Recovery
 
 ### 💯 High Availability
 
@@ -80,7 +80,7 @@ Set of policies, tools and **procedures to enable the recovery** of infrastructu
 
 ## 🤝 Shared Responsibility Model
 
-### 👀 AWS 
+### 👀 AWS
 
 Responsibility for security **OF** the cloud: Regions, AZ, Edge Locations, Hardware (compute, storage, database), etc.
 
@@ -103,7 +103,7 @@ For large business with multiple accounts it is recommended to create a **Manage
 
 ## 🛂 Service Control Policies
 
-SCPs are **account permissions boundaries**: they limit what the account can do (so they are restricting what the account root user can allow even if the account root user cannot be directly restricted). 
+SCPs are **account permissions boundaries**: they limit what the account can do (so they are restricting what the account root user can allow even if the account root user cannot be directly restricted).
 
 - Do not grant permissions (still need to give identities) but can restrict what permission can be given or not
 - **Allow list** (this is the list created by default with `fullAWSAccess`) vs **Deny list** (can be deleted so the implicit deny prevails, then add allow list when needed: less admin overhead)
@@ -117,8 +117,7 @@ SCP can be attached to:
 - **Organizational Unit** (one or many): will impact all accounts or nested Organizational Unit within
 - **Individual Account** (one or many)
 
-> [!IMPORTANT]
-> **Management Accounts** are never impacted by SCP (cannot be restricted): best practice is to not use resources in Management Accounts
+> [!IMPORTANT] > **Management Accounts** are never impacted by SCP (cannot be restricted): best practice is to not use resources in Management Accounts
 
 ## 🕵🏼 CloudTrail
 
@@ -165,8 +164,24 @@ Automates and Standardises new account creation for cloud admins or end users (w
 - Can give account admin rights to a named user with IAM Identity Center
 - Account & network standard configuration
 - Account can be closed or repurposed
-- Can be fully integrated with a business SDLC
+- Can be fully integrated with a business SDLC (Software Development Lifecycle)
 
 ### 👾 Dashboard
 
 Single page oversight of the entire environment.
+
+## 📍 Local Zones
+
+- Reduce latency: run **latency sensitive** applications closer to end users and data sources
+- Simplify hybrid cloud migrations
+- Meet data residency requirements
+
+> [!IMPORTANT]
+> Local Zones is rattached to a **Parent Region**.
+
+- It's like another AZ but near your location and with **no built in resilience**
+- Not all AWS products support them... many are opt in with limitations
+- DX to a local zone is supported (extreme performance needs)
+
+> [!NOTE]
+> Use-cases: real-time gaming, live streaming, augmented and virtual reality (AR/VR), virtual workstations, high perfomance needs, etc.

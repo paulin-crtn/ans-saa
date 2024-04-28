@@ -51,7 +51,7 @@ Deep learning **Image and Video Analysis**. Identify objects, people, text, acti
 
 ## 📄 Textract
 
-**Automatically extract printed text**, handwriting, layout elements, and data from any document + relationship between text + metadata (i.e. where text occurs).
+**Automatically extract printed text**, handwriting, layout elements, and data from any document + relationship between text + metadata.
 
 Textract is also able to proceed document analysis (names, address, birhtdate...), receipt analysis (prices, vendor, line items, dates...) and identity document analysis (document id...).
 
@@ -60,12 +60,58 @@ Textract is also able to proceed document analysis (names, address, birhtdate...
 - Synchronous or asynchronous for large documents
 - Pay for usage (custom pricing available for large volume)
 
-## Transcribe
+## ✏️ Transcribe
 
-## Translate
+**Automatically convert speech to text**.
 
-## Forecast
+- Language customisation
+- Filters for privacy
+- Audience-appropriate language
+- Speaker identification
+- Pay per use (per second of transcribe audio)
 
-## Fraud Detector
+> [!NOTE]
+> Use-cases: full text indexing of audio, meeting notes, subtitles/captions transcripts, call analytics (characteristics, summarisation, categories and sentiment), etc.
 
-## SageMaker
+## 🈯 Translate
+
+Text translation service.
+
+- Attention mechanisms ensure **meaning** is translated.
+- Auto detect source text language
+- Commonly integrates with other services, apps or platforms
+
+> [!NOTE]
+> Use-cases: meeting notes, emails, chat, articles, incoming data, etc.
+
+## 📊 Forecast
+
+**Forecasting for times-series data**.
+
+- Import historical & related data
+- Understands what's normal
+
+> [!NOTE]
+> Use-cases: retail demand, supply chain, staffing, energy, server capacity, web traffic, etc.
+
+## 🚨 Fraud Detector
+
+**Fully managed Fraud Detection service**.
+
+- Upload historical data, choose model type
+- Activity is **scored** then `Rules/Decision` logic allow to react
+
+> [!NOTE]
+> Use-cases: new account creations, payments, guest checkout, online or transaction fraud, account takeover (e.g. loggin from another country), etc.
+
+## 🧠 SageMaker
+
+Collections of services and tools to create machine learning features and products. Fully managed.
+
+- SageMaker **Studio**: build, train, debug and monitor models - IDE for ML lifecycle
+- SageMaker **Domain**: EFS volume, users, apps, policies, VPCs, etc.
+- **Container**: Docker containers deployed to ML EC2 instance - ML environments (OS, libs, tooling)
+- **Hosting**: deploy endpoints for your models
+
+> [!IMPORTANT]
+> SageMaker has no cost but the resources it creates do (complex pricing)
