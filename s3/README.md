@@ -211,7 +211,7 @@ Replication can take place within the same account or to a different account (in
 - Ownership (default is the source account)
 - Replication Time Control (RTC)
 
-🎒 Exams:
+🎒 **Exams**
 
 - By default not retroactive & versioning needs to be on
 - Batch replication can be used to replicate existing objects (must be specifically configured)
@@ -230,7 +230,7 @@ Give to another person or application access to an S3 object inside a bucket usi
 3. Server communicate the pre-signed URL to the user
 4. User can access the object using the pre-signed URL
 
-🎒 Exams:
+🎒 **Exams**
 
 - You can create a URL for an object you have no access to
 - When using the URL, the permissions match the identity which generated it
@@ -250,8 +250,7 @@ Notification generated when events occur in a bucket can be delivered to `SNS`, 
 - Object restore
 - Replication
 
-> [!NOTE] 
-> **EventBridge** is an alternative and supports more types of events and more services
+> [!NOTE] > **EventBridge** is an alternative and supports more types of events and more services
 
 ## 📗 Logs
 

@@ -36,7 +36,7 @@ R53 checks if a domain is available, if so it:
 
 ### ⏺️ Nameserver
 
-Record type which allow **delegation** to occur in DNS. 
+Record type which allow **delegation** to occur in DNS.
 
 For example the `.com` zone will have multiple **nameserver records** inside it for `amazon.com`. These nameserver records are how the `.com` delegation happens for `amazon.com` and they point at servers managed by the `amazon.com` team and these servers host the a `amazon.com` zone. Inside it are **DNS records** such a `www`.
 
@@ -76,7 +76,7 @@ Add arbitrary text to a domain in order to provide additional functionality (e.g
 
 ## ⌛ Time To Live
 
-Numeric value in seconds. 
+Numeric value in seconds.
 
 It tells the `Resolver server` how long the DNS is valid, so it does not have to query it again for a given time (it's a cache). Useful to avoid multiple unnecessary query but can cause DNS failure (`Client` -> `Resolver` -> `Root` -> `.com` -> `amazon.com`).
 
@@ -107,7 +107,7 @@ Good to know:
 
 ### 🚙 Simple Routing
 
-Supports 1 Record per name (e.g. `www`) and each Record can have multiple values (e.g. `1.2.3.3`, `1.2.3.4`, etc.). 
+Supports 1 Record per name (e.g. `www`) and each Record can have multiple values (e.g. `1.2.3.3`, `1.2.3.4`, etc.).
 
 - All values are returned in a random order
 - DO NOT support health check
@@ -116,7 +116,7 @@ Supports 1 Record per name (e.g. `www`) and each Record can have multiple values
 
 ### 🚙 Failover Routing
 
-Supports multiple Records with the same name (e.g. `www`): 
+Supports multiple Records with the same name (e.g. `www`):
 
 - If the target of the health check is **Healthy** the primary record is used
 - If the target of the health check is **Unhealthy** the secondary record is used
@@ -139,7 +139,7 @@ Supports multiple Records with the same name (e.g. `www`).
 
 ### 🚙 Weighted Routing
 
-Supports multiple Records with the same name (e.g. `www`). 
+Supports multiple Records with the same name (e.g. `www`).
 
 - Specify a weight for each record
 - Each record is returned based on its record weight vs total weight (e.g. 30%)
@@ -184,7 +184,7 @@ Aims to provide records which are as close to customers as possible.
 R53 can do BOTH or either **Domain Registrar** or **Domain Hosting**.
 
 > [!NOTE]
-> If done separately, it will be necessary to pass the allocated Name Servers details to the Registrar (who handles the TLD registration) 
+> If done separately, it will be necessary to pass the allocated Name Servers details to the Registrar (who handles the TLD registration)
 
 ## 🥷🏻 DNSSEC
 
@@ -192,9 +192,9 @@ Attackers sometimes hijack traffic to internet endpoints such as web servers by 
 
 You can protect your domain from this type of attack, known as DNS spoofing or a man-in-the-middle attack, by configuring Domain Name System Security Extensions (DNSSEC), a protocol for securing DNS traffic.
 
-🎒 Exams:
+🎒 **Exams**
 
 - Create KMS Public and Private `KSK` (Key Signing Key) in `us-east-1`
 - R53 handles internally the creation of a `ZSK` (Zone Signing Key)
 - DNSSEC validation can be enabled for VPCs: invalid results on DNSSEC enabled zones won't be returned
-- Create CloudWatch Alarms for `DNSSECInternalFailure` and `DNSSECKeySigningKeysNeedingAction` 
+- Create CloudWatch Alarms for `DNSSECInternalFailure` and `DNSSECKeySigningKeysNeedingAction`
