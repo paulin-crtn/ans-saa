@@ -14,7 +14,7 @@ CloudFormation is a tool to create, update and delete resources in AWS using a *
 
 ## 🏗️ Physical and Logical Resources
 
-CF **Template** are used to create one or multiple **Stacks**.
+CloudFormation **Template** are used to create one or multiple **Stacks**.
 
 - A stack creates/updates/deletes **Physical resources** based on the **Logical resources** described in the template
 - **Logical resources** have a `Name`, a `Type` (e.g. `AWS::EC2::Instance`) and various `Properties`.
@@ -151,9 +151,30 @@ Deploy CFN stacks across many accounts & regions.
 - The identity creating the stack does not need resource permissions - only `PassRole`
 - This lets us implement **role separation**
 
-## ✨ CloudFormation Init
+## ✨ CloudFormation cfn-init
 
-Simple configuration management system: helper script installed on **EC2 instance**.
+The `cfn-init` helper script reads template metadata from the `AWS::CloudFormation::Init` key and acts accordingly to:
 
-- Configuration directives stored in the template via the `AWS::CloudFormation::Init` attribute inside the logical resource
-- **Procedural** - HOW (user data) vs. **Desired State** - WHAT (`cfn-init`)
+- Fetch and parse metadata from CloudFormation
+- Install packages
+- Write files to disk
+- Enable/disable and start/stop services
+
+> [!NOTE]
+> `cfn-init` is run **once** as part of **bootstrapping** (user data) ➡️ if `AWS::CloudFormation::Init` it does not rerun.
+
+## 🔄 CloudFormation cfn-hup
+
+The `cfn-hup helper` is a daemon that **detects changes** in resource metadata and runs user-specified actions when a change is detected. This allows you to make **configuration updates** on your running Amazon EC2 instances through the `UpdateStack` API action.
+
+## ✅ Change Sets
+
+When you need to update a stack, understanding how your changes will affect running resources before you implement them can help you update stacks with confidence. Change sets allow you to **preview how proposed changes to a stack might impact your running resources**, including the impact on resource properties and attributes. 
+
+Whether your changes will delete or replace any critical resources, CloudFormation makes the changes to your stack only when you decide to execute the change set, allowing you to decide whether to proceed with your proposed changes or explore other changes by creating another change set.
+
+## 🧩 Custom Resources
+
+CloudFormation does not support everything, so Custom Resources let CFN integrate with anything it doesn't yet or doesn't natively support.
+
+Passes data to something, gets data back from something.
